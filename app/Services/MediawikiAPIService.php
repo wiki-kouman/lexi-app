@@ -15,19 +15,31 @@ class MediawikiAPIService
     }
 
     /**
+     */
+    public static function findByTerm(string $term) {
+        $apiParams = [
+            'action' => 'query',
+            'list' => 'search',
+            'srsearch' => $term,
+            'srlimit' => 5,
+            'format' => 'json',
+        ];
+
+        return json_decode( self::makeGetRequest($apiParams) )->query->search;
+    }
+
+    /**
      * @throws Exception
      */
-    public function findByTerm(string $term): array {
+    public function editPage(string $term): array {
         $this->API_URL = env('MW_API_URL');
-        $editToken = json_decode( $this->client->makeOAuthCall(
-            $this->accessToken,
-            "$this->API_URL?action=query&meta=tokens&format=json"
-        ) )->query->tokens->csrftoken;
+        $editToken = $this->getEditToken();
+
         $apiParams = [
             'action' => 'edit',
-            'title' => 'User:African Hope',
-            'section' => 'new',
-            'summary' => 'Hello World',
+            'title' => 'Utilisateur:African Hope',
+            'section' => 'Test',
+            'summary' => 'OAuth API test on Wikitonary',
             'text' => 'This is a preliminary test using OAuth API.',
             'token' => $editToken,
             'format' => 'json',
@@ -41,12 +53,30 @@ class MediawikiAPIService
         );
     }
 
-    public function getUserInfo()
-    {
-        $this->API_URL = env('MW_API_URL');
+    /**
+     * @throws Exception
+     */
+    private function getEditToken() {
         return json_decode( $this->client->makeOAuthCall(
             $this->accessToken,
-            "$this->API_URL?action=query&meta=userinfo&uiprop=rights&format=json"
+            "$this->API_URL?action=query&meta=tokens&format=json"
+        ) )->query->tokens->csrftoken;
+    }
+
+    private static function makeGetRequest(array $params): bool|string
+    {
+        $urlRequest = env('MW_API_URL') . '?';
+        $urlRequest .= http_build_query($params);
+
+        return file_get_contents($urlRequest);
+    }
+
+    public function getUserInfo()
+    {
+        $apiURL = env('MW_API_URL');
+        return json_decode( $this->client->makeOAuthCall(
+            $this->accessToken,
+            "$apiURL?action=query&meta=userinfo&uiprop=rights&format=json"
         ) );
     }
 }

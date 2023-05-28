@@ -5,7 +5,9 @@ namespace App\Services;
 use App\OAuthClient\Client;
 use App\OAuthClient\ClientConfig;
 use App\OAuthClient\Consumer;
+use App\OAuthClient\Exception;
 use App\OAuthClient\Token;
+use Throwable;
 
 class OAuthService
 {
@@ -19,15 +21,27 @@ class OAuthService
 
     public static function getRequestToken(): Token
     {
-        session_start();
-        return new Token( $_SESSION['request_key'], $_SESSION['request_secret'] );
+
+        $token = new Token(null, null);
+        try {
+            // Load the Request Token from the session.
+            session_start();
+            return new Token( $_SESSION['request_key'], $_SESSION['request_secret'] );
+        } catch (Throwable $e){
+            return $token;
+        }
     }
 
     public static function getAccessToken(): Token
     {
-        // Load the Access Token from the session.
-        session_start();
-        return new Token( $_SESSION['access_key'], $_SESSION['access_secret'] );
+        $token = new Token(null, null);
+        try {
+            // Load the Access Token from the session.
+            session_start();
+            return new Token( $_SESSION['access_key'], $_SESSION['access_secret'] );
+        } catch (Throwable $e){
+            return $token;
+        }
     }
 
     public static function addAccessTokenToSession(Token $accessToken): void
@@ -52,5 +66,10 @@ class OAuthService
     {
         session_start();
         session_destroy();
+    }
+
+    public static function isLoggedIn(): bool
+    {
+        return self::getAccessToken()->key != null;
     }
 }

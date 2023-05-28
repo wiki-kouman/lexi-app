@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('logged-out');
+    if(!OAuthService::isLoggedIn()){
+        return view('logged-out');
+    }
+
+    return redirect('/home');
 });
 
 Route::get('/login', function () {
