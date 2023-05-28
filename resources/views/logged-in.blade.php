@@ -28,9 +28,11 @@
 <br>
 <section class="container boxed">
     <section class="jumbotron">
-        <h1>Akwaba, {{ env('APP_NAME') }}.</h1>
+        <h1>Akwaba, <span class="highlight">{{ $user->name }}</span>.</h1>
         <p class="lead">{{ env('APP_DESCRIPTION') }}</p>
         <br>
+        <a class="btn btn-warning btn-lg btn-logout" href="/logout"
+           role="button"><i class="fa fa-sign-out"></i> Logout</a>
         <br>
     </section>
 

@@ -100,3 +100,6 @@ p.tou-description {
     margin-top: 24px;
     opacity: .8;
 }
+span.highlight{
+    color: #28a745;
+}

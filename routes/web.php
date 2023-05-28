@@ -66,12 +66,12 @@ Route::get('/oauth-callback', function () {
     // You also no longer need the Request Token.
     unset( $_SESSION['request_key'], $_SESSION['request_secret'] );
 
-    return view('logged-in');
+    return redirect('/home');
 });
 
 Route::get('/home', function () {
     // Make the api.php URL from the OAuth URL.
-    $apiUrl = preg_replace( '/index\.php.*/', 'api.php', env('MW_OAUTH_URL') );
+    $apiUrl = env('MW_API_URL');
 
     // Configure the OAuth client with the URL and consumer details.
     $conf = new ClientConfig( env('MW_OAUTH_URL') );
@@ -80,27 +80,22 @@ Route::get('/home', function () {
     $client = new Client( $conf );
 
     // Load the Access Token from the session.
-        session_start();
-        $accessToken = new Token( $_SESSION['access_key'], $_SESSION['access_secret'] );
-
-    // Example 1: get the authenticated user's identity.
-        $ident = $client->identify( $accessToken );
-        echo "You are authenticated as $ident->username.\n\n";
+    session_start();
+    $accessToken = new Token( $_SESSION['access_key'], $_SESSION['access_secret'] );
 
     // Example 2: do a simple API call.
-        $userInfo = json_decode( $client->makeOAuthCall(
-            $accessToken,
-            "$apiUrl?action=query&meta=userinfo&uiprop=rights&format=json"
-        ) );
-    echo "== User info ==\n\n";
-    print_r( $userInfo );
+    $user = json_decode( $client->makeOAuthCall(
+        $accessToken,
+        "$apiUrl?action=query&meta=userinfo&uiprop=rights&format=json"
+    ) );
 
-    // return view('logged-in');
+    $user = $user->query->userinfo;
+    return view('logged-in', compact('user'));
 });
 
 Route::get('/logout', function () {
     session_start();
     session_destroy();
 
-    echo "You are now logged out. <a href='/'>Log in.</a>";
+    return redirect('/');
 });
