@@ -1,0 +1,102 @@
+html,
+body {
+    height: 100%;
+}
+
+a {
+    color: #28a745;
+}
+
+a:hover {
+    color: #ffc107
+}
+
+.boxed {
+    max-width: 750px;
+    min-height: 85%;
+}
+
+.container .jumbotron {
+    padding-left: 8px;
+    padding-right: 0px;
+    padding-top: 72px;
+    background: transparent;
+
+}
+
+.jumbotron h1 {
+    font-size: 3em;
+
+}
+
+/* Button and controllers*/
+.batch .btn-update {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.navbar .btn-logout {
+    float: right;
+}
+
+#next-button {
+    display: none;
+}
+
+.standby {
+    background-color: #cecece;
+}
+
+.standby i {
+    animation: rotate 2s linear infinite;
+}
+
+.standby i::before {
+    content: "\f110";
+
+
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Footer */
+#footer {
+    /*position: absolute;*/
+    bottom: 0px;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+}
+
+#footer a {
+    display: inline-block;
+    padding: 0px 8px;
+}
+
+#footer .col-md-6 {
+    padding-left: 0px;
+}
+
+.btn-logout {
+    display: inline-block;
+    padding: 3px 10px;
+}
+
+.btn-logout {
+    margin-left: 10px;
+}
+
+p.tou-description {
+    font-size: 1em;
+    color: #444;
+    margin-top: 24px;
+    opacity: .8;
+}
