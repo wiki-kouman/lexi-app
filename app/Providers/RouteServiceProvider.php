@@ -35,6 +35,9 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/oauth.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/wiki.php'));
         });
     }
 }
