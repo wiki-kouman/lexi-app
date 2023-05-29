@@ -15,11 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    if(!OAuthService::isLoggedIn()){
-        return view('logged-out');
+    if(OAuthService::isLoggedIn()){
+        return redirect('home');
     }
-
-    return redirect('/home');
+    return view('logged-out');
 });
 
 Route::get('/login', function () {
@@ -52,7 +51,6 @@ Route::get('/home', function () {
     $client = OAuthService::getClient();
     $accessToken = OAuthService::getAccessToken();
 
-    // Example 2: do a simple API call.
     $mediawikiAPIService = new MediawikiAPIService($client, $accessToken);
     $user = $mediawikiAPIService->getUserInfo();
     $user = $user->query->userinfo;

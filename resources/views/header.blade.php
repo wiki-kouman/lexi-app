@@ -1,3 +1,5 @@
+@inject('oauth', 'App\Services\OAuthService')
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -21,6 +23,9 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="/"><i class="fa fa-home"></i> Home <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="/about"><i class="fa fa-cube"></i> About</a>
+            @if ($oauth::isLoggedIn())
+                <a class="nav-item nav-link" href="/logout"><i class="fa fa-sign-out"></i> Logout</a>
+            @endif
         </div>
 
     </div>
