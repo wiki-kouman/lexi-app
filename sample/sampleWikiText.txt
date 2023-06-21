@@ -1,0 +1,334 @@
+{{voir/bara}}
+
+== {{langue|fr}} ==
+=== {{S|verbe|fr|flexion}} ===
+{{fr-verbe-flexion|barer|ind.ps.3s=oui}}
+'''bara''' {{pron|ba.ʁa|fr}}
+# ''Troisième personne du singulier du passé simple de'' [[barer]].
+
+=== {{S|prononciation}} ===
+* {{pron-rimes|ba.ʁa|fr}}
+* {{écouter|lang=fr|Côte d'Ivoire (Abidjan)||audio=LL-Q32706 (dyu)-Camara aminata-bara.wav}}
+* {{écouter|Lyon (France)||lang=fr|audio=LL-Q150 (fra)-Lyokoï-bara.wav}}
+
+=== {{S|anagrammes}} ===
+{{voir anagrammes|fr}}
+
+== {{langue|aa}} ==
+=== {{S|étymologie}} ===
+: {{ébauche-étym|aa}}
+
+=== {{S|nom|aa}} ===
+'''bara'''
+# [[an|An]] (pour l’âge).
+# [[nuit|Nuit]].
+
+== {{langue|bm}} ==
+=== {{S|étymologie}} ===
+: {{ébauche-étym|bm}}
+
+=== {{S|adjectif|bm}} ===
+'''bara''' {{pron|bara|bm}}
+# [[préféré|Préféré]], [[chéri]].
+
+=== {{S|nom|bm}} ===
+{{bm-nom-rég|bà.ra}}
+'''bara''' {{pron|bà.ra|bm}}
+# [[calebasse|Calebasse]].
+# [[sphère|Sphère]].
+# [[tambour|Tambour]].
+# [[destinataire|Destinataire]].
+# [[ombilic|Ombilic]].
+
+'''bara''' {{pron|bara|bm}}
+# [[piste de danse|Piste de danse]].
+
+==== {{S|dérivés}} ====
+* {{lien|kɔnɔbara|bm}} (ventre)
+* {{lien|dabara|bm}} (bouche)
+
+=== {{S|postposition|bm}} ===
+'''bara''' {{pron|bara|bm}}
+# [[chez|Chez]].
+#* ''An ka taa i bara.'' : Allons chez toi.
+
+=== {{S|prononciation}} ===
+==== {{S|homophones|bm}} ====
+* [[baara]]
+
+== {{langue|br}} ==
+
+=== {{S|étymologie}} ===
+: {{date|lang=br|1499}} Du {{étyl|xbm|br|mot=bara}}{{R|CATH}}, issu du {{étyl|proto-celtique|br}} {{recons|lang-mot-vedette=br|barag(en)ā|proto-celtique}} qui donne ''{{lien|bara|cy}}'' en gallois, ''{{lien|bara|kw}}'' en cornique, ''{{lien|bairgen|sga}}'' en vieil irlandais, ''[[bairghean]]'' en gaélique irlandais, ''[[bairghin]]'' en gaélique écossais (« pain, gâteau »){{R|LEBM}}.
+: Plus avant, d'une racine en {{ine-pie}} {{recons|lang-mot-vedette=br|bʰars-|ine-pie}}{{R|Pokorny}} qui donne le latin {{lien|''far''|la|sens=froment, blé}}, l’anglais {{lien|''barley''|en|sens=orge}}, le slavon {{lien|брашьно|cu|tr=brašĭno|sens=repas}}.
+
+=== {{S|nom|br}} ===
+{{br-nom|bara|baraioù|baraoù}}
+'''bara''' {{pron|ˈbɑː.ra|br}} {{m}}
+# {{aliments|br}} [[pain#Nom_commun|Pain]].
+#* ''En han’ Doue un tamm '''bara'''.'' {{source|{{w|François-Marie Luzel}}, ''Gwerziou Breiz-Izel. Chants populaires de Basse-Bretagne'', Édouard Corfmat, 1868, Levrenn I, page 80}}
+
+==== {{S|dérivés}} ====
+{{(}}
+* [[baraa]]
+* [[bara amann]]
+* [[bara amanenn]]
+* [[bara an aelez]]
+* [[bara an aoter]]
+* [[bara-an-evn]]
+* [[bara-an-hocʼh]]
+* [[bara-an-ozhacʼh-kozh]]
+* [[bara ar Rouanez]]
+* [[bara ar valadenn gentañ]]
+* [[bara biologel]]
+* [[bara brazed]]
+* [[bara brizh]]
+* [[bara-choanenn]]
+* [[bara-chokolad]]
+* [[bara dibar]]
+* [[bara du]]
+* [[baraek]]
+* [[baraenn]]
+* [[baraer]]
+* [[baraerezh]]
+* [[bara fresk]]
+* [[bara-gad]]
+* [[bara-gavr]]
+* [[bara giz gwechall]]
+* [[bara giz kozh]]
+* [[bara goell]]
+* [[bara gwenn]]
+* [[baraiñ]]
+* [[bara-kan]]
+* [[bara kej]]
+* [[bara-koukoug]]
+* [[bara kras]]
+* [[bara krazet]]
+* [[bara-laezh]]
+* [[bara-ludu]]
+* [[bara mag]]
+* [[bara-mel]]
+* [[bara-mel plaen]]
+* [[bara-minvig]]
+* [[bara-mor]]
+* [[bara moull]]
+* [[bara poazhet gant tan keuneud]]
+* [[bara pobet gant tan keuneud]]
+* [[bara-oaled]]
+* [[bara-rezin]]
+* [[bara segal biologel]]
+* [[bara segal]]
+* [[bara-tiegezh]]
+* [[bara tosennet]]
+* [[choanenn vara]]
+* [[forn vara]]
+* [[gounid e vara]]
+* [[jelkenn vara]]
+* [[klasker-bara]]
+* [[kontell-vara]]
+* [[krazerez-vara]]
+* [[stucʼhenn-vara]]
+* [[tanavenn vara]]
+* [[torzh vara]]
+* [[trankenn vara]]
+{{)}}
+
+==== {{S|dérivés autres langues}} ====
+* {{L|fr}} : {{lien|baragouin|fr}} ; de ''bara'' (« pain ») et ''{{lien|gwin|br}}'' (« vin »).
+
+=== {{S|anagrammes}} ===
+* {{lien|arab|br}}
+
+=== {{S|références}} ===
+<references>
+{{R|LEBM}}
+</references>
+
+== {{langue|kw}} ==
+
+=== {{S|étymologie}} ===
+: Apparenté au breton {{lien|''bara''|br}}.
+
+=== {{S|nom|kw}} ===
+'''bara''' {{pron||kw}} {{m}}
+# {{aliments|kw}} [[pain#fr|Pain]].
+
+== {{langue|dyu}} ==
+
+=== {{S|étymologie}} ===
+: {{ébauche-étym|dyu}}
+
+=== {{S|nom|dyu}} ===
+'''bara''' {{pron||dyu}}
+# Travail.
+#*'''''Bara''' be thiama''
+#:Il y a beaucoup de travail
+
+=== {{S|prononciation}} ===
+* {{écouter|lang=dyu|Côte d'Ivoire||audio=LL-Q32706 (dyu)-Petrus yh-bara.wav}}
+
+== {{langue|cy}} ==
+
+=== {{S|étymologie}} ===
+: Apparenté au breton {{lien|''bara''|br}}.
+
+=== {{S|nom|cy}} ===
+'''bara''' {{pron||cy}} {{m}}
+# {{aliments|cy}} [[pain#fr|Pain]].
+
+== {{langue|ha}} ==
+
+=== {{S|étymologie}} ===
+: {{ébauche-étym|ha}}
+
+=== {{S|nom|ha}} ===
+'''bara''' {{m}} ({{f}} : {{lien|baranya|ha}} ; {{p}} : {{lien|baroci|ha}})
+# [[serviteur#fr|Serviteur]].
+
+== {{langue|ivb}} ==
+
+=== {{S|étymologie}} ===
+: {{ébauche-étym|ivb}}
+
+=== {{S|nom|ivb}} ===
+'''bara''' {{pron||ivb}}
+# {{lexique|anatomie|ivb}} [[poumon#fr|Poumon]].
+
+== {{langue|id}} ==
+
+=== {{S|étymologie}} ===
+: {{ébauche-étym|id}}
+
+=== {{S|nom|id}} ===
+'''bara''' {{pron||id}}
+# [[braise#fr|Braise]].
+#: {{exemple|lang=id}}
+# [[escarbille#fr|Escarbille]].
+#: {{exemple|lang=id}}
+
+==== {{S|dérivés}} ====
+* [[membara]]
+* [[perbaraan]]
+
+=== {{S|anagrammes}} ===
+* {{lien|raba|id}}
+
+== {{langue|it}} ==
+
+=== {{S|étymologie}} ===
+: Du germanique {{recons|lang-mot-vedette=it|bara}}{{R|VELI}}{{R|Treccani}}, lui-même d’une racine indo-européenne ''bher-'' « porter » (cf. anglais ''to [[bear]]'', « porter » ; aussi, en français : la ''mise en [[bière]]'', d’origine francique).
+
+=== {{S|nom|it}} ===
+{{it-flexion|ba.r}}
+'''bara''' {{pron|ba.ra|it}} {{f}}
+# [[cercueil#fr|Cercueil]], [[châsse]].
+
+==== {{S|synonymes}} ====
+*[[cassa da morto#it|cassa da morto]]
+*[[feretro#it|feretro]]
+
+==== {{S|dérivés}} ====
+* [[barella#it|barella]]
+
+=== {{S|verbe|it|flexion}} ===
+{{it-verbe-flexion|ind.p.3s=oui|imp.p.2s=oui|barare}}
+'''bara''' {{pron|ˈba.ra|it}}
+# ''Troisième personne du singulier de l’indicatif présent de'' [[barare#it|barare]].
+# ''Deuxième personne du singulier de l’impératif présent de'' [[barare#it|barare]].
+
+=== {{S|voir aussi}} ===
+* {{WP|3=it}}
+
+=== {{S|références}} ===
+{{Références}}
+[[Catégorie:Lexique en italien du funéraire]]
+
+== {{langue|rw}} ==
+=== {{S|nom|rw}} ===
+'''ibara''' {{cl5}} ({{p}} {{cl6}} : amabara)
+# [[couleur|Couleur]].
+
+== {{langue|avk}} ==
+
+=== {{S|étymologie}} ===
+: {{composé de|m=1|baroy|-a|lang=avk}}.
+
+=== {{S|nom|avk}} ===
+'''bara''' {{pron|ˈbara|avk}}
+# [[trio#fr|Trio]], [[groupe]] de [[trois]], [[tiercé]].
+
+=== {{S|prononciation}} ===
+* {{écouter|lang=avk|France|ˈbara|audio=bara (avk).wav}}
+
+=== {{S|anagrammes}} ===
+* {{lien|arba|avk}}, {{lien|raba|avk}}
+
+=== {{S|références}} ===
+* {{Kotapedia|bara}}
+[[Catégorie:Mots en kotava répertoriés sur Kotapedia]]
+
+== {{langue|mnb}} ==
+
+=== {{S|étymologie}} ===
+: {{ébauche-étym|mnb}}
+
+=== {{S|nom|mnb}} ===
+'''bara''' {{pron||mnb}}
+# [[bagage#fr|Bagage]].
+
+=== {{S|références}} ===
+* {{R:SILMuna}}
+
+== {{langue|pap}} ==
+
+=== {{S|étymologie}} ===
+: De l’{{étyl|es|pap|mot=barra}}.
+
+=== {{S|nom|pap}} ===
+'''bara''' {{pron||pap}} {{f}}
+# [[bâton|Bâton]], [[gaule]], [[perche]], [[barre]], [[barreau]].
+
+== {{langue|pl}} ==
+
+=== {{S|étymologie}} ===
+: Du {{étyl|cu|pl|mot=|sens=}}{{R|SEJP|bara}} {{cf|brlog|lang=sl}} en slovène et l’étymologie de {{lien|''Berlin''|de}}.
+
+=== {{S|nom|pl}} ===
+{{pl-décl-nom-f|ba|r}}
+'''bara''' {{pron||pl}} {{f}}
+# Marais, marécage.
+#*{{exemple|lang=pl}}
+
+==== {{S|synonymes}} ====
+* {{lien|bagno|pl}}
+
+==== {{S|dérivés}} ====
+* {{lien|Barycz|pl}}
+
+=== {{S|références}} ===
+{{Références}}
+
+== {{langue|sl}} ==
+=== {{S|nom|sl|flexion}} ===
+'''bara''' {{pron||sl}} {{m|i}}
+# ''Génitif singulier de'' [[bar#sl|bar]].
+# ''Nominatif duel de'' [[bar#sl|bar]].
+# ''Accusatif duel de'' [[bar#sl|bar]].
+
+== {{langue|sv}} ==
+=== {{S|étymologie}} ===
+: {{ébauche-étym|sv}}
+
+=== {{S|adverbe|sv}} ===
+'''bara''' {{pron||sv}}
+# [[ne|Ne]]… [[que]]…, [[seulement]].
+
+==== {{S|synonymes}} ====
+* [[blott]]
+* [[endast]]
+
+=== {{S|prononciation}} ===
+* {{écouter|lang=sv|Suède||audio=Sv-bara.ogg}}
+
+=== {{S|anagrammes}} ===
+* {{lien|arab|sv}}

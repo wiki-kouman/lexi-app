@@ -5,6 +5,7 @@ namespace App\Services;
 use App\OAuthClient\Client;
 use App\OAuthClient\Exception;
 use App\OAuthClient\Token;
+use Illuminate\Support\Facades\Log;
 
 class MediawikiAPIService
 {
@@ -24,8 +25,20 @@ class MediawikiAPIService
             'srlimit' => 5,
             'format' => 'json',
         ];
+        return json_decode(self::makeGetRequest($apiParams))->query->search;
+    }
 
-        return json_decode( self::makeGetRequest($apiParams) )->query->search;
+
+    /**
+     */
+    public static function getTermById(int $id): array {
+        $apiParams = [
+            'action' => 'parse',
+            'prop' => 'wikitext',
+            'pageid' => $id,
+            'format' => 'json',
+        ];
+        return json_decode( self::makeGetRequest($apiParams), true)['parse'];
     }
 
     /**

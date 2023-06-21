@@ -6,7 +6,7 @@
                 Found <span class="highlight">{{ count($results) }}</span> results
             </button>
             @foreach ($results as $result)
-                <button type="button" class="list-group-item list-group-item-action">{{ $result->title }}</button>
+                <a href="{{ url('/wiki/view', $result->pageid) }}" class="list-group-item list-group-item-action">{{ $result->title }}</a>
             @endforeach
         </div>
     </section>
