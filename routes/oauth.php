@@ -61,3 +61,7 @@ Route::get('/logout', function () {
     OAuthService::clearSession();
     return redirect('/');
 });
+
+Route::get('/about', function () {
+    return view('about');
+});

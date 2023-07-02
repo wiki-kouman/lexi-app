@@ -1,6 +1,6 @@
 <?php
 
-use App\Services\LexemeParserService;
+use App\Services\LexemeParser;
 use App\Services\MediawikiAPIService;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +18,8 @@ Route::get('/wiki/add', function () {
 
 Route::get('/wiki/view/{termId}', function (string $termId) {
     $term = MediawikiAPIService::getTermById($termId);
-    $parser = new LexemeParserService($term['wikitext']['*']);
-    $languages = $parser->extractLanguages();
-    return view('view', compact('term', 'languages'));
+    $parser = new LexemeParser($term['title'], $term['wikitext']['*'], $term['pageid']);
+    $lexeme = $parser->parse();
+    $groups = $lexeme->getCategoriesGroupedByLanguages();
+    return view('view', compact('term', 'groups'));
 });

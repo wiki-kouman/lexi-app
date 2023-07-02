@@ -6,6 +6,9 @@
 '''bara''' {{pron|ba.ʁa|fr}}
 # ''Troisième personne du singulier du passé simple de'' [[barer]].
 
+=== {{S|adjectif|fr}} ===
+'''bara''' {{pron|bara|fr}}
+# [[préféré|Préféré]], [[chéri]].
 === {{S|prononciation}} ===
 * {{pron-rimes|ba.ʁa|fr}}
 * {{écouter|lang=fr|Côte d'Ivoire (Abidjan)||audio=LL-Q32706 (dyu)-Camara aminata-bara.wav}}
