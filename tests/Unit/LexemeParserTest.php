@@ -52,4 +52,28 @@ class LexemeParserTest extends TestCase
         $definitions = $this->parser->extractDefinitions($wikitext, );
         $this->assertNotEmpty($definitions);
     }
+
+    public function test_extract_definitions_should_return_array(): void
+    {
+        $wikitext = <<<EOT
+        === {{S|nom|any}} ===
+        '''nzue''' {{pron||any}}
+        # [[eau|Eau]].
+        #*''kaku a nun '''nzue'''.''
+        #*: Kakou a bu de l’eau.
+        [[Catégorie:agni de Côte d’Ivoire]]
+
+        == {{langue|bci}} ==
+        === {{S|étymologie}} ===
+        : {{ébauche-étym|bci}}
+
+        === {{S|nom|bci}} ===
+        '''nzue''' {{pron||bci}}
+        # [[eau]]
+        # [[pluie]]
+        EOT;
+
+        $definitions = $this->parser->extractDefinitions($wikitext, );
+        $this->assertNotEmpty($definitions);
+    }
 }
