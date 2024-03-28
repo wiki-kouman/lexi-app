@@ -44,26 +44,20 @@ class MediawikiAPIService
     /**
      * @throws Exception
      */
-    public function editPage(string $term): array {
+    public function editPage(string $term, string $pageContent): array {
         $this->API_URL = env('MW_API_URL');
         $editToken = $this->getEditToken();
-
         $apiParams = [
             'action' => 'edit',
-            'title' => 'Utilisateur:African Hope',
+            'title' => env('MW_SANDBOX_PAGE'),
             'section' => 'Test',
-            'summary' => 'OAuth API test on Wikitonary',
+            'summary' => env('MW_SANDBOX_COMMENT'),
             'text' => 'This is a preliminary test using OAuth API.',
             'token' => $editToken,
             'format' => 'json',
         ];
 
-        return json_decode( $this->client->makeOAuthCall(
-            $this->accessToken,
-            $this->API_URL,
-            true,
-            $apiParams)
-        );
+        return json_decode( $this->commitChange($apiParams));
     }
 
     /**
@@ -91,5 +85,18 @@ class MediawikiAPIService
             $this->accessToken,
             "$apiURL?action=query&meta=userinfo&uiprop=rights&format=json"
         ) );
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function commitChange($apiParams): string
+    {
+        return $this->client->makeOAuthCall(
+            $this->accessToken,
+            $this->API_URL,
+            true,
+            $apiParams
+        );
     }
 }
