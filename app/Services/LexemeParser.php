@@ -72,22 +72,19 @@ class LexemeParser
         // Loop through each group of wikitext definitions to create a Definition[] array
         foreach($results as $result){
             $lines = array_filter(array_map(
-                function ($definition) use ($regexPattern) {
-                    return trim(
-                        preg_replace(
-                            $regexPattern,
-                            "",
-                            $definition)
-                    );
+                function ($definition) {
+                    return trim($definition);
                 }, explode("\n", trim($result))
             ), 'strlen');
 
             // Create new Definition object and populate it
-            $definitions[] = new Definition(
-                $lines[0] ?? null,
-                $this->lexemeId,
-                array_slice($lines, 1)
-            );
+            if(isset($lines[0])) {
+                $definitions[] = new Definition(
+                    $lines[0] ?? null,
+                    $this->lexemeId,
+                    array_slice($lines, 1)
+                );
+            }
         }
 
         return $definitions;
