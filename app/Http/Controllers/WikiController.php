@@ -9,15 +9,20 @@ use Illuminate\View\View;
 
 class WikiController extends Controller
 {
-    public function add() {
-        if ( !isset( $_GET['term'] ) ) {
+    public function search(Request $request) {
+        if ( !$request->get('term') !== null) {
             echo "A parameter is missing";
             exit( 1 );
         }
 
         $term = $_GET['term'];
         $results = MediawikiAPIService::findByTerm($term);
-        return view('results', compact('results'));
+        return view('term/results', compact('results'));
+    }
+
+    public function add(Request $request, int $termId): View {
+        $term = MediawikiAPIService::getTermById($termId);
+        return view('term/add', compact('term'));
     }
 
     public function view (string $termId): View {
@@ -25,6 +30,6 @@ class WikiController extends Controller
         $parser = new LexemeParser($term['title'], $term['wikitext']['*'], $term['pageid']);
         $lexeme = $parser->parse();
         $groups = $lexeme->getCategoriesGroupedByLanguages();
-        return view('view', compact('term', 'groups'));
+        return view('term/view', compact('term', 'groups'));
     }
 }
