@@ -44,15 +44,34 @@ class MediawikiAPIService
     /**
      * @throws Exception
      */
+    public function createPage(string $term, string $pageContent): array {
+        $this->API_URL = env('MW_API_URL');
+        $editToken = $this->getEditToken();
+        $apiParams = [
+            'action' => 'edit',
+            'title' => '[Test] Creating [[' . $term . ']] / ' . env('MW_SANDBOX_PAGE'),
+            'section' => 'Test',
+            'summary' => env('MW_SANDBOX_COMMENT'),
+            'text' => $pageContent,
+            'token' => $editToken,
+            'format' => 'json',
+        ];
+
+        return json_decode( $this->commitChange($apiParams));
+    }
+
+    /**
+     * @throws Exception
+     */
     public function editPage(string $term, string $pageContent): array {
         $this->API_URL = env('MW_API_URL');
         $editToken = $this->getEditToken();
         $apiParams = [
             'action' => 'edit',
-            'title' => env('MW_SANDBOX_PAGE'),
+            'title' => '[Test] Editing [[' . $term . ']] / ' . env('MW_SANDBOX_PAGE'),
             'section' => 'Test',
             'summary' => env('MW_SANDBOX_COMMENT'),
-            'text' => 'This is a preliminary test using OAuth API.',
+            'text' => $pageContent,
             'token' => $editToken,
             'format' => 'json',
         ];
