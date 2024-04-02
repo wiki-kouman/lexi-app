@@ -13,20 +13,10 @@ a:hover {
 
 .boxed {
     max-width: 750px;
-    min-height: 85%;
 }
 
-.container .jumbotron {
-    padding-left: 8px;
-    padding-right: 0px;
-    padding-top: 72px;
-    background: transparent;
-
-}
-
-.jumbotron h1 {
-    font-size: 3em;
-
+.spacious-card{
+    padding: 2rem;
 }
 
 /* Button and controllers*/
@@ -53,7 +43,6 @@ a:hover {
 
 .standby i::before {
     content: "\f110";
-
 
 }
 
@@ -102,4 +91,10 @@ p.tou-description {
 }
 span.highlight{
     color: #28a745;
+}
+
+.repeater {
+    background: #f4f5f7;
+    padding: 10px 30px;
+    margin-bottom: 15px;
 }

@@ -5,8 +5,8 @@
             <p class="lead">Page: <span class="badge badge-light">About</span></p>
         </div>
     </section>
-    <h2 class="text-success">Yet to be created</h2>
-    <p class="tou-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
+    <h2>À propos de l'application <span class="text-success">Lexi</span></h2>
+    <p class="tou-description">Lexi est <a rel="nofollow" class="external text" href="https://w.wiki/9a4d">un outil</a> en cours de développement visant à simplifier le processus d'ajout et de mise à jour des mots sur le Wiktionnaire. Veuillez noter que cet outil est actuellement à l'étape de prototype et peut subir des modifications et des mises à jour au fur et à mesure de son avancement.
+    </p>
 </section>
 @include('footer')

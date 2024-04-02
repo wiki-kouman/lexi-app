@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//code.jquery.com/jquery.min.js"></script>
     @vite('resources/js/jquery.repeatable.js')
+    @vite('resources/css/app.css')
     <!-- Styles -->
 </head>
 <body class="antialiased">
