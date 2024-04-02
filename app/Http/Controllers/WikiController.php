@@ -20,9 +20,13 @@ class WikiController extends Controller
         return view('term/results', compact('results'));
     }
 
-    public function add(Request $request, int $termId): View {
-        $term = MediawikiAPIService::getTermById($termId);
+    public function add(string $term): View {
         return view('term/add', compact('term'));
+    }
+
+    public function update(int $termId): View {
+        $term = MediawikiAPIService::getTermById($termId);
+        return view('term/update', compact('term'));
     }
 
     public function view (string $termId): View {
