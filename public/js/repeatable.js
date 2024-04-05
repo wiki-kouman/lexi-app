@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * MIT License
  * Copyright (c) 2024 Samuel Guebo <https://github.com/samuelguebo>
@@ -21,16 +23,29 @@
  * SOFTWARE.
  */
 
-
-const definitionContainerSelector = '.example'
-
 window.addEventListener('load', () => {
+    /**
+     * Define Node selectors that will be used
+     * with document.querySelector operations.
+     */
+    const definitionContainerSelector = '.example'
+    const addButtonSelector = '.actions .btn-add'
+    const deleteButtonSelector = '.actions .btn-delete'
+    const repeaterSelector = '.repeater-container'
+
+    /**
+     * Use previously defined selectors
+     */
     const definitionRepeaterContainer = document.querySelector(definitionContainerSelector)
-    const addButton = document.querySelector('.actions .btn-add')
-    const deleteButton = document.querySelector('.actions .btn-delete')
+    const addButton = document.querySelector(addButtonSelector)
+    const deleteButton = document.querySelector(deleteButtonSelector)
+
+    /**
+     * Display and hide visibility buttons
+     * under certain conditions.
+     */
     const setDeleteButtonVisibility = () => {
         const childCount = document.querySelector(definitionContainerSelector).children.length
-        console.log('entered setDeleteButtonVisibility with childCount: ' + childCount)
         if( childCount > 1 ) {
             deleteButton.classList.remove('hidden')
         } else {
@@ -38,14 +53,16 @@ window.addEventListener('load', () => {
         }
     }
 
-    setDeleteButtonVisibility();
+    const init = () => {
+        setDeleteButtonVisibility();
+    }
 
     /**
-     * Add a new element as a clone
+     * Add a new node as a clone
      */
     addButton.addEventListener('click', (e) => {
         e.preventDefault();
-        const template = document.querySelector('.repeater-container').cloneNode(true)
+        const template = document.querySelector(repeaterSelector).cloneNode(true)
         definitionRepeaterContainer.append(template)
         setDeleteButtonVisibility()
     })
@@ -62,4 +79,7 @@ window.addEventListener('load', () => {
             setDeleteButtonVisibility()
         }
     })
+
+    init();
+
 })

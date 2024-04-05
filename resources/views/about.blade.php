@@ -2,7 +2,7 @@
 <section class="container boxed">
     <section class="jumbotron">
         <div class="list-group">
-            <p class="lead">Page: <span class="badge badge-light">About</span></p>
+            <p class="lead">Page: <span class="badge badge-light">{{ __('About') }}</span></p>
         </div>
     </section>
     <h2>À propos de l'application <span class="text-success">Lexi</span></h2>

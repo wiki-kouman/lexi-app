@@ -25,10 +25,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse container boxed" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/"><i class="fa fa-home"></i> Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="/about"><i class="fa fa-cube"></i> About</a>
+            <a class="nav-item nav-link" href="/"><i class="fa fa-home"></i> {{ __('Home') }} <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/about"><i class="fa fa-cube"></i> {{ __('About') }}</a>
             @if ($oauth::isLoggedIn())
-                <a class="nav-item nav-link" href="/logout"><i class="fa fa-sign-out"></i> Logout</a>
+                <a class="nav-item nav-link" href="/logout"><i class="fa fa-sign-out"></i> {{ __('Logout') }}</a>
             @endif
         </div>
 

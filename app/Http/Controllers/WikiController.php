@@ -10,7 +10,7 @@ use Illuminate\View\View;
 class WikiController extends Controller
 {
     public function search(Request $request) {
-        if ( !$request->get('term') !== null) {
+        if ( $request->get('term') == null) {
             echo "A parameter is missing";
             exit( 1 );
         }

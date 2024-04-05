@@ -90,7 +90,8 @@ p.tou-description {
     opacity: .8;
 }
 span.highlight{
-    color: #28a745;
+    color: #000;
+    font-weight: bold;
 }
 
 .repeater {
