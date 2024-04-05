@@ -44,9 +44,9 @@
         </div>
 
     </div>
-    <div class="actions">
+    <div class="actions form-group">
         <a href="#" class="btn btn-warning btn-sm btn-add"><i class="fa fa-plus"></i> Ajouter</a>
-        <a href="#" class="btn btn-danger btn-sm btn-delete"><i class="fa fa-trash"></i> Supprimer</a>
+        <a href="#" class="btn btn-danger btn-sm btn-delete hidden"><i class="fa fa-trash"></i> Supprimer</a>
     </div>
 
     <button type="submit" class="btn btn-primary align-right">Enregistrer</button>

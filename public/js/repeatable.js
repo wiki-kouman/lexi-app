@@ -22,11 +22,23 @@
  */
 
 
+const definitionContainerSelector = '.example'
 
 window.addEventListener('load', () => {
-    const definitionRepeaterContainer = document.querySelector('.example')
+    const definitionRepeaterContainer = document.querySelector(definitionContainerSelector)
     const addButton = document.querySelector('.actions .btn-add')
     const deleteButton = document.querySelector('.actions .btn-delete')
+    const setDeleteButtonVisibility = () => {
+        const childCount = document.querySelector(definitionContainerSelector).children.length
+        console.log('entered setDeleteButtonVisibility with childCount: ' + childCount)
+        if( childCount > 1 ) {
+            deleteButton.classList.remove('hidden')
+        } else {
+            deleteButton.classList.add('hidden')
+        }
+    }
+
+    setDeleteButtonVisibility();
 
     /**
      * Add a new element as a clone
@@ -35,6 +47,7 @@ window.addEventListener('load', () => {
         e.preventDefault();
         const template = document.querySelector('.repeater-container').cloneNode(true)
         definitionRepeaterContainer.append(template)
+        setDeleteButtonVisibility()
     })
 
     /**
@@ -42,11 +55,11 @@ window.addEventListener('load', () => {
      */
     deleteButton.addEventListener('click', (e) => {
         e.preventDefault();
-        const lastNode = document.querySelector('.example').lastChild
-        if(document.querySelector('.example').children.length > 1){
-            definitionRepeaterContainer.removeChild(lastNode)
+        const parentNode = document.querySelector(definitionContainerSelector)
+        const lastNode = parentNode.lastChild
+        if(parentNode.children.length > 1) {
+            parentNode.removeChild(lastNode)
+            setDeleteButtonVisibility()
         }
     })
-
-
 })
