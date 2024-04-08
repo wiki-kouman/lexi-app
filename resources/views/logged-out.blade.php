@@ -2,7 +2,7 @@
 <section class="container boxed">
     <section class="jumbotron">
         <h1 class="mt-5">{{ env('APP_NAME') }}</h1>
-        <p class="lead">{{ env('APP_DESCRIPTION') }}</p>
+        <p class="lead">{{ __(env('APP_DESCRIPTION')) }}</p>
         <p class="lead">
             <a class="btn btn-success btn-lg btn-login md-opjjpmhoiojifppkkcdabiobhakljdgm_doc" href="{{ '/login' }}"
                role="button"><i class="fa fa-sign-in"></i> Login with Wikimedia</a>

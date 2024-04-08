@@ -2,10 +2,20 @@
     "Home": "Accueil",
     "About": "À propos",
     "Login": "Se connecter",
-    "Logout": "Se deconnecter",
+    "Logout": "Se déconnecter",
     "Terms of Use": "Conditions d'utilisation",
     "Source code is available on": "Code source disponible sur",
     "Interactive application for adding words to Wiktionary": "Application interactive pour ajouter des mots au Wiktionnaire",
     "Type your new word": "Tapez le mot à créer",
-    "Check": "Vérifiez"
+    "Create word": "Créer un mot",
+    "Check": "Vérifiez",
+    "Preview": "Prévisualiser",
+    "Adjective": "Adjectif qualificatif",
+    "Adverb": "Adverbe",
+    "Verb": "Verbe",
+    "Noun": "Nom commun",
+    "Choose category": "Choisir la catégorie",
+    "Choose language": "Choisir la langue",
+    "Language": "Langue",
+    "Grammar category": "Catégorie grammaticale"
 }

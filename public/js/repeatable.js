@@ -32,6 +32,7 @@ window.addEventListener('load', () => {
     const addButtonSelector = '.actions .btn-add'
     const deleteButtonSelector = '.actions .btn-delete'
     const repeaterSelector = '.repeater-container'
+    const languageDropdown = document.querySelector('#language')
 
     /**
      * Use previously defined selectors
@@ -78,6 +79,17 @@ window.addEventListener('load', () => {
             parentNode.removeChild(lastNode)
             setDeleteButtonVisibility()
         }
+    })
+
+    /**
+     * Update source language labels
+     * upon language selector change
+     */
+    languageDropdown.addEventListener('change', (e) => {
+        const value = languageDropdown.options[languageDropdown.selectedIndex].text;
+        document.querySelectorAll('.source-label').forEach((e) => {
+            e.innerText = value
+        })
     })
 
     init();
