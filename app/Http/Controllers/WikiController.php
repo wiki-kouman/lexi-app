@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\LexemeParser;
 use App\Services\MediawikiAPIService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -35,5 +36,10 @@ class WikiController extends Controller
         $lexeme = $parser->parse();
         $groups = $lexeme->getCategoriesGroupedByLanguages();
         return view('term/view', compact('term', 'groups'));
+    }
+
+    public function preview(Request $request): JsonResponse {
+        $payload = $request->all();
+        return response()->json($payload);
     }
 }

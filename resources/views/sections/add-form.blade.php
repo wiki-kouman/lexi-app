@@ -1,8 +1,9 @@
 <form action="/wiki/preview" method="post">
+    @csrf <!-- {{ csrf_field() }} -->
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="language">{{__('Language')}}</label>
-            <select id="language" class="custom-select mr-sm-2">
+            <select id="language" class="custom-select mr-sm-2" name="language">
                 <option selected>{{__('Choose language')}}...</option>
                 <option value="adj">Adioukrou</option>
                 <option value="any">Agni</option>
@@ -11,7 +12,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="category">{{__('Grammar category')}}</label>
-            <select id="category" class="custom-select mr-sm-2">
+            <select id="category" class="custom-select mr-sm-2"  name="category">
                 <option selected>{{__('Choose category')}}...</option>
                 <option value="noun">{{__('Noun')}}</option>
                 <option value="verb">{{__('Verbe')}}</option>
@@ -25,15 +26,15 @@
 
         <div class="input-group form-group">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="targetExample">Mot</span>
+                <span class="input-group-text">Mot</span>
             </div>
             <input type="text" class="form-control" value="{{$term}}">
         </div>
         <div class="input-group form-group">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="targetDefinition">Français</span>
+                <span class="input-group-text">Français</span>
             </div>
-            <input type="text" class="form-control" aria-describedby="targetDefinition">
+            <input type="text" class="form-control" name="targetDefinition[]">
         </div>
     </div>
     <div class="example">
@@ -44,13 +45,13 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text source-label" id="originalExample">Source</span>
                 </div>
-                <input type="text" class="form-control" aria-describedby="originalExample">
+                <input type="text" class="form-control" name="originalExample[]">
             </div>
             <div class="input-group form-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="targetExample">Français</span>
                 </div>
-                <input type="text" class="form-control" aria-describedby="targetExample">
+                <input type="text" class="form-control" name="targetExample[]">
             </div>
         </div>
 
