@@ -17,41 +17,41 @@
                 <option value="noun">{{__('Noun')}}</option>
                 <option value="verb">{{__('Verbe')}}</option>
                 <option value="adverb">{{__('Adverb')}}</option>
-                <option value="adjective">{{__('Adjective')}}</option>
+                <option value="adj">{{__('Adjective')}}</option>
             </select>
         </div>
     </div>
-    <div class="repeater definition">
+    <div class="lexeme-attribute definition">
         <label>Definition</label>
 
         <div class="input-group form-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Mot</span>
             </div>
-            <input type="text" class="form-control" value="{{$term}}">
+            <input type="text" class="form-control" value="{{$term}}" name="definitionLabel">
         </div>
         <div class="input-group form-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Français</span>
             </div>
-            <input type="text" class="form-control" name="targetDefinition[]">
+            <input type="text" class="form-control" name="definitionTranslation">
         </div>
     </div>
     <div class="example">
-        <div class="repeater repeater-container">
+        <div class="lexeme-attribute repeater-container">
             <label>Example</label>
 
             <div class="input-group form-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text source-label" id="originalExample">Source</span>
+                    <span class="input-group-text source-label" id="exampleLabel">Source</span>
                 </div>
-                <input type="text" class="form-control" name="originalExample[]">
+                <input type="text" class="form-control" name="exampleLabel[]">
             </div>
             <div class="input-group form-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="targetExample">Français</span>
+                    <span class="input-group-text" id="exampleTranslation">Français</span>
                 </div>
-                <input type="text" class="form-control" name="targetExample[]">
+                <input type="text" class="form-control" name="exampleTranslation[]">
             </div>
         </div>
 
