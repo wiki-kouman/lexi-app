@@ -40,6 +40,7 @@ class WikiController extends Controller
 
     public function preview(Request $request): JsonResponse {
         $payload = $request->all();
+        $langCode = "";
         return response()->json($payload);
     }
 }

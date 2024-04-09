@@ -27,7 +27,6 @@ class Category
         $this->definitions = $definitions;
     }
 
-
     /**
      * @return int
      */

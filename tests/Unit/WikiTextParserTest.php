@@ -2,15 +2,15 @@
 
 namespace Tests\Unit;
 
-use App\Services\LexemeParser;
+use App\Services\WikiTextParser;
 use PHPUnit\Framework\TestCase;
 
 class LexemeParserTest extends TestCase
 {
-    private LexemeParser $parser;
+    private WikiTextParser $parser;
     protected function setUp(): void{
         $wikiText = file_get_contents('./sample/sampleWikiText.txt');
-        $this->parser = new LexemeParser('barra', $wikiText);
+        $this->parser = new WikiTextParser('barra', $wikiText);
     }
     public function test_extract_lexeme_should_contain_categories(): void
     {
