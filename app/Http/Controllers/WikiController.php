@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\LexemeParser;
+use App\Services\WikiTextGenerator;
+use App\Services\WikiTextParser;
 use App\Services\MediawikiAPIService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -32,15 +33,36 @@ class WikiController extends Controller
 
     public function view (string $termId): View {
         $term = MediawikiAPIService::getTermById($termId);
-        $parser = new LexemeParser($term['title'], $term['wikitext']['*'], $term['pageid']);
+        $parser = new WikiTextParser($term['title'], $term['wikitext']['*'], $term['pageid']);
         $lexeme = $parser->parse();
         $groups = $lexeme->getCategoriesGroupedByLanguages();
         return view('term/view', compact('term', 'groups'));
     }
 
-    public function preview(Request $request): JsonResponse {
-        $payload = $request->all();
-        $langCode = "";
-        return response()->json($payload);
+    public function preview(Request $request) {
+        // $payload = $request->all();
+        $label = $request->get('definitionLabel');
+        $translation = $request->get('definitionTranslation');
+        $grammarCategory = $request->get('category');
+        $langCode = $request->get('language');
+        $exampleLabels = $request->get('exampleLabel');
+        $exampleTranslations = $request->get('exampleTranslation');
+
+        $wikiTextGenerator = (new WikiTextGenerator);
+        $wikiText = $wikiTextGenerator->wordToWikiText(
+            $label,
+            $translation,
+            $grammarCategory,
+            $langCode,
+            $exampleLabels,
+            $exampleTranslations
+        );
+
+        $wikiText = $wikiTextGenerator->addNewLanguageSection($langCode) . $wikiText;
+        $wikiText .= $wikiTextGenerator->addWikiCategory($langCode);
+
+
+        return response($wikiText)
+            ->header('Content-Type', 'text/plain');
     }
 }

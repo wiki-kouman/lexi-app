@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class LexemeGenerator {
+class WikiTextGenerator {
 
     public function wordToWikiText(string $label, string $translation, string $grammarCategory, string $langCode, array $exampleLabels, array $exampleTranslations): string {
         $categoryCode = $this->mapGrammarCategoryToTranslation($grammarCategory);

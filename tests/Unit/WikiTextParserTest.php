@@ -5,7 +5,7 @@ namespace Tests\Unit;
 use App\Services\WikiTextParser;
 use PHPUnit\Framework\TestCase;
 
-class LexemeParserTest extends TestCase
+class WikiTextParserTest extends TestCase
 {
     private WikiTextParser $parser;
     protected function setUp(): void{

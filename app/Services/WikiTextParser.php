@@ -7,7 +7,7 @@ use App\Models\Definition;
 use App\Models\Language;
 use App\Models\Lexeme;
 
-class LexemeParser
+class WikiTextParser
 {
 
     public function __construct(
