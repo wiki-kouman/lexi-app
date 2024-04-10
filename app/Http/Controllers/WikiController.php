@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Services\WikiTextGenerator;
 use App\Services\WikiTextParser;
 use App\Services\MediawikiAPIService;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -39,8 +38,7 @@ class WikiController extends Controller
         return view('term/view', compact('term', 'groups'));
     }
 
-    public function preview(Request $request) {
-        // $payload = $request->all();
+    public function preview(Request $request): View {
         $label = $request->get('definitionLabel');
         $translation = $request->get('definitionTranslation');
         $grammarCategory = $request->get('category');
@@ -61,8 +59,12 @@ class WikiController extends Controller
         $wikiText = $wikiTextGenerator->addNewLanguageSection($langCode) . $wikiText;
         $wikiText .= $wikiTextGenerator->addWikiCategory($langCode);
 
+        return view('term/preview', compact('wikiText', 'label'));
+    }
 
-        return response($wikiText)
+    public function create(Request $request) {
+        $payload = $request->all();
+        return response($payload)
             ->header('Content-Type', 'text/plain');
     }
 }

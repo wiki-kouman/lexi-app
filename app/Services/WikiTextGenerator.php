@@ -6,15 +6,15 @@ class WikiTextGenerator {
 
     public function wordToWikiText(string $label, string $translation, string $grammarCategory, string $langCode, array $exampleLabels, array $exampleTranslations): string {
         $categoryCode = $this->mapGrammarCategoryToTranslation($grammarCategory);
-        $wikiText = "=== {{S|$categoryCode|$langCode}} ===" . "\r\n";;
-        $wikiText .= "'''$label''' {{pron||$langCode}}" . "\r\n";;
-        $wikiText .= "# $translation" . "\r\n";;
+        $wikiText = "=== {{S|$categoryCode|$langCode}} ===" . "\r\n";
+        $wikiText .= "'''$label''' {{pron||$langCode}}" . "\r\n";
+        $wikiText .= "# $translation" . "\r\n";
 
         for ($i = 0; $i < count($exampleLabels); $i++) {
             $examplelabel = $exampleLabels[$i];
             $exampleTranslation = $exampleTranslations[$i];
-            $wikiText .= "#* $examplelabel" . "\r\n";;
-            $wikiText .= "#*: $exampleTranslation" . "\r\n";;
+            $wikiText .= "#* $examplelabel" . "\r\n";
+            $wikiText .= "#*: $exampleTranslation" . "\r\n" . "\r\n";
         }
 
         return $wikiText;
