@@ -1,7 +1,7 @@
 
-# Kouman
+# Lexi
 
-Interactive application for adding words to Wiktionary.
+Interactive web application for adding terms to Wiktionary.
 
 ## Requirements
 

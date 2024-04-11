@@ -4,7 +4,7 @@
         <div class="form-group col-md-6">
             <label for="language">{{__('Language')}}</label>
             <select id="language" class="custom-select mr-sm-2" name="language">
-                <option selected>{{__('Choose language')}}...</option>
+                <option selected value="adj">{{__('Choose language')}}...</option>
                 <option value="adj">Adioukrou</option>
                 <option value="any">Agni</option>
                 <option value="bci">Baoulé</option>
@@ -13,7 +13,7 @@
         <div class="form-group col-md-6">
             <label for="category">{{__('Grammar category')}}</label>
             <select id="category" class="custom-select mr-sm-2"  name="category">
-                <option selected>{{__('Choose category')}}...</option>
+                <option selected value="noun">{{__('Choose category')}}...</option>
                 <option value="noun">{{__('Noun')}}</option>
                 <option value="verb">{{__('Verbe')}}</option>
                 <option value="adverb">{{__('Adverb')}}</option>

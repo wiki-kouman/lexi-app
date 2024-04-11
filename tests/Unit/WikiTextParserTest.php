@@ -15,7 +15,7 @@ class WikiTextParserTest extends TestCase
     public function test_extract_lexeme_should_contain_categories(): void
     {
         $lexeme = $this->parser->parse();
-        echo(json_encode($lexeme));
+        // echo(json_encode($lexeme));
         $this->assertTrue(count($lexeme->getCategories()) > 1);
     }
 

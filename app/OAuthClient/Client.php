@@ -177,7 +177,6 @@ class Client implements LoggerAwareInterface {
 
 		$data = $this->makeOAuthCall( $requestToken, $tokenUrl );
 		$return = $this->decodeJson( $data );
-        print_r($return);
 		if ( property_exists( $return, 'error' ) ) {
 			$this->logger->error(
 				'OAuth server error {error}: {msg}',

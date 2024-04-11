@@ -18,7 +18,7 @@ Route::get('/', function () {
     if(OAuthService::isLoggedIn()){
         return redirect('home');
     }
-    return view('logged-out');
+    return view('/home/logged-out');
 });
 
 Route::get('/login', function () {
@@ -54,7 +54,7 @@ Route::get('/home', function () {
     $mediawikiAPIService = new MediawikiAPIService($client, $accessToken);
     $user = $mediawikiAPIService->getUserInfo();
     $user = $user->query->userinfo;
-    return view('logged-in', compact('user'));
+    return view('/home/logged-in', compact('user'));
 });
 
 Route::get('/logout', function () {
