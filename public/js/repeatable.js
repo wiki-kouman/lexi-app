@@ -23,7 +23,7 @@
  * SOFTWARE.
  */
 
-window.addEventListener('load', () => {
+$(function () {
     /**
      * Define Node selectors that will be used
      * with document.querySelector operations.
@@ -32,25 +32,25 @@ window.addEventListener('load', () => {
     const addButtonSelector = '.actions .btn-add'
     const deleteButtonSelector = '.actions .btn-delete'
     const repeaterSelector = '.repeater-container'
-    const languageDropdown = document.querySelector('#language')
+    const languageDropdown = $('#language')
 
     /**
      * Use previously defined selectors
      */
-    const definitionRepeaterContainer = document.querySelector(definitionContainerSelector)
-    const addButton = document.querySelector(addButtonSelector)
-    const deleteButton = document.querySelector(deleteButtonSelector)
+    const definitionRepeaterContainer = $(definitionContainerSelector)
+    const addButton = $(addButtonSelector)
+    const deleteButton = $(deleteButtonSelector)
 
     /**
      * Display and hide visibility buttons
      * under certain conditions.
      */
     const setDeleteButtonVisibility = () => {
-        const childCount = document.querySelector(definitionContainerSelector).children.length
+        const childCount = $(definitionContainerSelector).children.length
         if( childCount > 1 ) {
-            deleteButton.classList.remove('hidden')
+            deleteButton.removeClass('hidden')
         } else {
-            deleteButton.classList.add('hidden')
+            deleteButton.addClass('hidden')
         }
     }
 
@@ -61,9 +61,9 @@ window.addEventListener('load', () => {
     /**
      * Add a new node as a clone
      */
-    addButton.addEventListener('click', (e) => {
+    addButton.click((e) => {
         e.preventDefault();
-        const template = document.querySelector(repeaterSelector).cloneNode(true)
+        const template = $(repeaterSelector).clone(true)
         definitionRepeaterContainer.append(template)
         setDeleteButtonVisibility()
     })
@@ -71,12 +71,12 @@ window.addEventListener('load', () => {
     /**
      * Handle deletion of latest node elemt
      */
-    deleteButton.addEventListener('click', (e) => {
+    deleteButton.click((e) => {
         e.preventDefault();
-        const parentNode = document.querySelector(definitionContainerSelector)
+        const parentNode = $(definitionContainerSelector)
         const lastNode = parentNode.lastChild
         if(parentNode.children.length > 1) {
-            parentNode.removeChild(lastNode)
+            parentNode.remove(lastNode)
             setDeleteButtonVisibility()
         }
     })
@@ -85,9 +85,9 @@ window.addEventListener('load', () => {
      * Update source language labels
      * upon language selector change
      */
-    languageDropdown.addEventListener('change', (e) => {
+    languageDropdown.change((e) => {
         const value = languageDropdown.options[languageDropdown.selectedIndex].text;
-        document.querySelectorAll('.source-label').forEach((e) => {
+        $('.source-label').forEach((e) => {
             e.innerText = value
         })
     })

@@ -27,8 +27,10 @@
         <div class="input-group form-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Mot</span>
+
             </div>
-            <input type="text" class="form-control" value="{{$term}}" name="definitionLabel">
+            <input type="text" class="form-control keyboard-input" value="{{$term}}" name="definitionLabel">
+            <button type="button" class="btn btn-dark keyboard-button"><i class="fa fa-keyboard-o"></i></button>
         </div>
         <div class="input-group form-group">
             <div class="input-group-prepend">
@@ -45,7 +47,8 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text source-label" id="exampleLabel">Source</span>
                 </div>
-                <input type="text" class="form-control" name="exampleLabel[]">
+                <input type="text" class="form-control keyboard-input" name="exampleLabel[]">
+                <button type="button" class="btn btn-dark keyboard-button"><i class="fa fa-keyboard-o"></i></button>
             </div>
             <div class="input-group form-group">
                 <div class="input-group-prepend">
@@ -63,3 +66,5 @@
 
     <button type="submit" class="btn btn-primary align-right">{{__('Preview')}}</button>
 </form>
+
+@include('../keyboard')

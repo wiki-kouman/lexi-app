@@ -1,0 +1,61 @@
+.diacritrics-keyboard .close{
+    display: inline-block;
+    position: absolute;
+    z-index: 100;
+    top: -2px;
+    left: 140px;
+    padding: 5px;
+    color: #848181;
+}
+.diacritrics-keyboard.hidden{
+    display: none;
+}
+.diacritrics-keyboard{
+    border: 1px solid rgba(0,0,0,.125);
+    padding: 25px 10px 25px 15px;
+    display: grid;
+    border-radius: 15px;
+    grid-template-columns: auto auto auto auto;
+    margin: 0;
+    max-width: 200px;
+    position: fixed;
+    top: 15%;
+    right: 5%;
+}
+
+.diacritrics-keyboard li{
+    list-style: none;
+    margin: 5px 5px 0 0;
+}
+
+.diacritrics-keyboard .btn{
+    color: #FFF;
+    border-color: #1a202c;
+}
+
+.diacritrics-keyboard .btn:hover{
+    background-color: #ddccb4 !important;
+    border-color: transparent !important;
+    color: #FFF !important;
+}
+
+.diacritrics-keyboard .btn:nth-child(n+1):nth-child(-n+16){
+    background-color: #2a2828;
+
+}
+.diacritrics-keyboard .btn:nth-child(n+17):nth-child(-n+32){
+    color: #1a202c;
+    background-color: #FFF;
+}
+.diacritrics-keyboard .btn:nth-child(n+33):nth-child(-n+44){
+    background-color: #dba70c;
+    border-color: #FFF;
+}
+
+.diacritrics-keyboard .btn:nth-child(n+45):nth-child(-n+50){
+    background-color: #686b8c;
+    border-color: #FFF;
+}
+.uppercase{
+    text-transform: uppercase;
+}

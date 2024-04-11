@@ -103,3 +103,10 @@ span.highlight{
     opacity: 0;
     pointer-events: none;
 }
+
+/**
+* Popover keyboard for diatritics
+*/
+.keyboard-button {
+    margin-left: 5px;
+}
