@@ -86,10 +86,8 @@ $(function () {
      * upon language selector change
      */
     languageDropdown.change((e) => {
-        const value = languageDropdown.options[languageDropdown.selectedIndex].text;
-        $('.source-label').forEach((e) => {
-            e.innerText = value
-        })
+        const value = e.target.options[e.target.selectedIndex].text;
+        $('.source-label').html(value)
     })
 
     init();
