@@ -32,12 +32,12 @@ $(function () {
     const addButtonSelector = '.actions .btn-add'
     const deleteButtonSelector = '.actions .btn-delete'
     const repeaterSelector = '.repeater-container'
+    const repeaterCountSelector = 'span.repeater-count'
     const languageDropdown = $('#language')
 
     /**
      * Use previously defined selectors
      */
-    const definitionRepeaterContainer = $(definitionContainerSelector)
     const addButton = $(addButtonSelector)
     const deleteButton = $(deleteButtonSelector)
 
@@ -46,14 +46,25 @@ $(function () {
      * under certain conditions.
      */
     const setDeleteButtonVisibility = () => {
-        const childCount = $(definitionContainerSelector).children.length
-        if( childCount > 1 ) {
+        updateRepeaterCount()
+        const childrenCount = $(definitionContainerSelector).find(repeaterSelector).length
+
+        deleteButton.addClass('hidden')
+        $(repeaterSelector).addClass('hidden')
+
+        if( childrenCount > 1 ) {
             deleteButton.removeClass('hidden')
-        } else {
-            deleteButton.addClass('hidden')
+            $(repeaterCountSelector).removeClass('hidden')
         }
     }
 
+    const updateRepeaterCount = () => {
+        let i = 0
+        $(repeaterCountSelector).each(function () {
+            $(this).text(i+1)
+            i += 1
+        })
+    }
     const init = () => {
         setDeleteButtonVisibility();
     }
@@ -62,9 +73,8 @@ $(function () {
      * Add a new node as a clone
      */
     addButton.click((e) => {
-        e.preventDefault();
-        const template = $(repeaterSelector).clone(true)
-        definitionRepeaterContainer.append(template)
+        const template = $(repeaterSelector).last().clone(true)
+        $(definitionContainerSelector).append(template)
         setDeleteButtonVisibility()
     })
 
@@ -72,11 +82,10 @@ $(function () {
      * Handle deletion of latest node elemt
      */
     deleteButton.click((e) => {
-        e.preventDefault();
         const parentNode = $(definitionContainerSelector)
-        const lastNode = parentNode.lastChild
-        if(parentNode.children.length > 1) {
-            parentNode.remove(lastNode)
+        const lastNode = $(repeaterSelector).last()
+        if(parentNode.find(repeaterSelector).length > 1) {
+            lastNode.remove()
             setDeleteButtonVisibility()
         }
     })

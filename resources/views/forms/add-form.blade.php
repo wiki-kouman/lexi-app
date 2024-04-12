@@ -41,7 +41,7 @@
     </div>
     <div class="example">
         <div class="lexeme-attribute repeater-container">
-            <label>Example</label>
+            <label>Example <span class="repeater-count hidden"></span></label>
 
             <div class="input-group form-group">
                 <div class="input-group-prepend">
@@ -60,11 +60,12 @@
 
     </div>
     <div class="actions form-group">
-        <a href="#" class="btn btn-warning btn-sm btn-add"><i class="fa fa-plus"></i> Ajouter</a>
-        <a href="#" class="btn btn-danger btn-sm btn-delete hidden"><i class="fa fa-trash"></i> Supprimer</a>
+        <button type="button" class="btn btn-warning btn-sm btn-add"><i class="fa fa-plus"></i> Ajouter</button>
+        <button type="button" class="btn btn-danger btn-sm btn-delete hidden"><i class="fa fa-trash"></i> Supprimer</button>
+        <button type="submit" class="btn btn-sm btn-primary align-right"><i class="fa fa-eye"></i>  {{__('Preview')}}</button>
     </div>
 
-    <button type="submit" class="btn btn-primary align-right">{{__('Preview')}}</button>
+
 </form>
 
 @include('../keyboard')

@@ -99,9 +99,25 @@ span.highlight{
     margin-bottom: 15px;
 }
 
-.actions a.btn-delete.hidden{
+.actions button.btn-delete.hidden{
     opacity: 0;
     pointer-events: none;
+}
+
+.repeater-count.hidden{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.actions{
+    display: flex;
+}
+.actions .btn-sm{
+    margin-right: 5px;
+}
+.actions .align-right{
+    margin-left: auto;
+    margin-right: 0;
 }
 
 /**
