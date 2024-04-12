@@ -25,9 +25,9 @@ class MediawikiAPIService
             'srlimit' => 5,
             'format' => 'json',
         ];
+
         return json_decode(self::makeGetRequest($apiParams))->query->search;
     }
-
 
     /**
      */
@@ -97,6 +97,9 @@ class MediawikiAPIService
         return file_get_contents($urlRequest);
     }
 
+    /**
+     * @throws Exception
+     */
     public function getUserInfo()
     {
         $apiURL = env('MW_API_URL');
@@ -109,13 +112,28 @@ class MediawikiAPIService
     /**
      * @throws Exception
      */
-    private function commitChange($apiParams): string
-    {
+    private function commitChange($apiParams): string {
         return $this->client->makeOAuthCall(
             $this->accessToken,
             $this->API_URL,
             true,
             $apiParams
         );
+    }
+
+    public static function isExistent(string $term): bool {
+        $apiParams = [
+            'action' => 'query',
+            'titles' => $term,
+            'format' => 'json',
+        ];
+
+        $results = json_decode(self::makeGetRequest($apiParams))->query->pages;
+
+        if(property_exists($results, "-1")){
+            return false;
+        }
+
+        return true;
     }
 }

@@ -18,7 +18,9 @@ class WikiController extends Controller
 
         $term = $_GET['term'];
         $results = MediawikiAPIService::findByTerm($term);
-        return view('term/results', compact('results'));
+        $isExistent = MediawikiAPIService::isExistent($term);
+
+        return view('term/results', compact('term', 'results', 'isExistent'));
     }
 
     public function add(string $term): View {

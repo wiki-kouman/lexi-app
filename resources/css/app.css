@@ -110,3 +110,7 @@ span.highlight{
 .keyboard-button {
     margin-left: 5px;
 }
+
+.red-link {
+    color: crimson;
+}
