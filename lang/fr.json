@@ -25,7 +25,9 @@
     "Language": "Langue",
     "Grammar category": "Catégorie grammaticale",
     "Error": "Erreur",
-    "Success": "Succès",
+    "Well done": "Bien joué",
+    "See changes": "Voir les changements",
+    "Start a new edit": "Contribuer encore",
     "The change you requested has failed. Please try again.": "La modification que vous avez tentée a échouée. Veuillez réessayer plus tard.",
-    "The page was updated successfully.": "Vos modifications ont bien été enregistrées."
+    "The page was updated successfully.": "Vos modifications ont été enregistrées."
 }

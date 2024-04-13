@@ -112,6 +112,9 @@ span.highlight{
 .actions{
     display: flex;
 }
+.gap-10{
+    gap: 10px;
+}
 .actions .btn-sm{
     margin-right: 5px;
 }

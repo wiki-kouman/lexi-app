@@ -41,13 +41,13 @@ class MediawikiAPIService
         return json_decode( self::makeGetRequest($apiParams), true)['parse'];
     }
 
-    public function createPage(string $term, string $wikiText): bool {
+    public function createPage(string $pageTitle, string $wikiText): bool {
         try {
             $this->API_URL = env('MW_API_URL');
             $editToken = $this->getEditToken();
             $apiParams = [
                 'action' => 'edit',
-                'title' => env('MW_SANDBOX_PAGE') . '/' . $term,
+                'title' => $pageTitle,
                 'createonly' => true,
                 'bot' => true,
                 'summary' => env('MW_SANDBOX_COMMENT'),

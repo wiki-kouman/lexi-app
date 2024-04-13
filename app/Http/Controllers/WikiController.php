@@ -77,7 +77,9 @@ class WikiController extends Controller {
         $client = OAuthService::getClient();
         $accessToken = OAuthService::getAccessToken();
         $mediawikiAPIService = new MediawikiAPIService($client, $accessToken);
-        $status = $mediawikiAPIService->createPage($term, $wikiText);
+        $pageTitle = env('MW_SANDBOX_PAGE') . '/' . $term;
+        $newURL = env('MW_ROOT_URL') . '/' . env('MW_SANDBOX_PAGE') . '/' . $term;
+        $status = $mediawikiAPIService->createPage($pageTitle, $wikiText);
 
         // Display an error message if there's a failure
         if(!$status){
@@ -85,6 +87,6 @@ class WikiController extends Controller {
         }
 
         $message = $this->MESSAGE_SUCCESS;
-        return view('messages/success', compact('message'));
+        return view('messages/success', compact('message', 'newURL'));
     }
 }
