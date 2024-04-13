@@ -86,7 +86,7 @@ $(function () {
             return false;
         }
 
-        // Bold
+        // Bold or italizice
         if ($this.hasClass("bold") || $this.hasClass("italicize")) {
 
             // Only if a portion of the text is selected
@@ -99,7 +99,7 @@ $(function () {
                 let newText = currentText.substring(0, selectionStartIndex)
 
                 // Use 2 apostrophes for Bold and 3 for italic
-                const tag = ($this.hasClass("bold")) ? "''" : "'''"
+                const tag = ($this.hasClass("bold")) ? "'''" : "''"
                 newText += tag + selectedText + tag
                 newText += currentText.substring(selectionEndIndex, currentText.length);
 

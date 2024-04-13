@@ -16,7 +16,7 @@
                 <option selected value="noun">{{__('Choose category')}}...</option>
                 <option value="noun">{{__('Noun')}}</option>
                 <option value="verb">{{__('Verbe')}}</option>
-                <option value="adverb">{{__('Adverb')}}</option>
+                <option value="adv">{{__('Adverb')}}</option>
                 <option value="adj">{{__('Adjective')}}</option>
             </select>
         </div>

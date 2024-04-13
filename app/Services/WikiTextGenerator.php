@@ -14,7 +14,7 @@ class WikiTextGenerator {
             $examplelabel = $exampleLabels[$i];
             $exampleTranslation = $exampleTranslations[$i];
             $wikiText .= "#* $examplelabel" . "\r\n";
-            $wikiText .= "#*: $exampleTranslation" . "\r\n" . "\r\n";
+            $wikiText .= "#*: $exampleTranslation" . "\r\n";
         }
 
         return $wikiText;

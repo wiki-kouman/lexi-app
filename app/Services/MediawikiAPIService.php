@@ -136,4 +136,14 @@ class MediawikiAPIService
 
         return true;
     }
-}
+
+    public static function previewWikiText(string $wikiText): string {
+        $apiParams = [
+            'action' => 'parse',
+            'title' => 'Test',
+            'text' => $wikiText,
+            'format' => 'json',
+        ];
+
+        return json_decode(self::makeGetRequest($apiParams))->parse->text->{"*"};
+    }}

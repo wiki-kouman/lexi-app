@@ -5,9 +5,10 @@
     </section>
     <section class="card spacious-card">
         <div class="actions form-group">
-            <pre>{{$wikiText}}</pre>
+            <pre class="col-md-6 wiki-text-box">{{$wikiText}}</pre>
+            <div class="col-md-6 html-text-box">{!! $htmlText !!}</div>
         </div>
-        <div class="actions form-group">
+        <div class="preview actions form-group">
             <a href="javascript:history.back()" class="btn btn-warning btn-sm btn-cancel"><i class="fa fa-times"></i> {{__('Cancel')}}</a>
             <form action="/wiki/create" method="post" style="display: inline-block">
                 @csrf <!-- {{ csrf_field() }} -->
