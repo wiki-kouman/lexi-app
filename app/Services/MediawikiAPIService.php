@@ -52,7 +52,7 @@ class MediawikiAPIService
                 'bot' => true,
                 'summary' => env('MW_SANDBOX_COMMENT'),
                 'text' => $wikiText,
-                // 'token' => $editToken,
+                'token' => $editToken,
                 'format' => 'json',
             ];
 
@@ -84,7 +84,7 @@ class MediawikiAPIService
             ];
 
             $result = json_decode($this->commitChange($apiParams));
-            print_r($result);
+
             if(!property_exists($result , "error")){
                 return true;
             }

@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class WikiController extends Controller {
+    private string $MESSAGE_SUCCESS = 'The page was updated successfully.';
+    private string $MESSAGE_ERROR = 'The change you requested has failed. Please try again.';
+
     public function search(Request $request) {
         if ( $request->get('term') == null) {
             echo "A parameter is missing";
@@ -68,20 +71,20 @@ class WikiController extends Controller {
     public function create(Request $request): View {
         $wikiText = $request->get("wikiText");
         $term = $request->get("term");
-        $message = 'The change you requested has failed. Please try again.';
+        $message = $this->MESSAGE_ERROR;
 
         // Get requestToken from session
         $client = OAuthService::getClient();
         $accessToken = OAuthService::getAccessToken();
         $mediawikiAPIService = new MediawikiAPIService($client, $accessToken);
-        $status = $mediawikiAPIService->addSection($term, $wikiText);
+        $status = $mediawikiAPIService->createPage($term, $wikiText);
 
         // Display an error message if there's a failure
         if(!$status){
             return view('messages/error', compact('message'));
         }
 
-        $message = 'The page was updated successfully.';
+        $message = $this->MESSAGE_SUCCESS;
         return view('messages/success', compact('message'));
     }
 }
