@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\OAuthService;
 use App\Services\WikiTextGenerator;
 use App\Services\WikiTextParser;
 use App\Services\MediawikiAPIService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class WikiController extends Controller
-{
+class WikiController extends Controller {
     public function search(Request $request) {
         if ( $request->get('term') == null) {
             echo "A parameter is missing";
@@ -65,9 +65,23 @@ class WikiController extends Controller
         return view('term/preview', compact('htmlText','wikiText', 'label'));
     }
 
-    public function create(Request $request) {
-        $payload = $request->all();
-        return response($payload)
-            ->header('Content-Type', 'text/plain');
+    public function create(Request $request): View {
+        $wikiText = $request->get("wikiText");
+        $term = $request->get("term");
+        $message = 'The change you requested has failed. Please try again.';
+
+        // Get requestToken from session
+        $client = OAuthService::getClient();
+        $accessToken = OAuthService::getAccessToken();
+        $mediawikiAPIService = new MediawikiAPIService($client, $accessToken);
+        $status = $mediawikiAPIService->addSection($term, $wikiText);
+
+        // Display an error message if there's a failure
+        if(!$status){
+            return view('messages/error', compact('message'));
+        }
+
+        $message = 'The page was updated successfully.';
+        return view('messages/success', compact('message'));
     }
 }

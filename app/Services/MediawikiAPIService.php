@@ -41,25 +41,59 @@ class MediawikiAPIService
         return json_decode( self::makeGetRequest($apiParams), true)['parse'];
     }
 
-    /**
-     * @throws Exception
-     */
-    public function createPage(string $term, string $pageContent): array {
-        $this->API_URL = env('MW_API_URL');
-        $editToken = $this->getEditToken();
-        $apiParams = [
-            'action' => 'edit',
-            'title' => '[Test] Creating [[' . $term . ']] / ' . env('MW_SANDBOX_PAGE'),
-            'section' => 'Test',
-            'summary' => env('MW_SANDBOX_COMMENT'),
-            'text' => $pageContent,
-            'token' => $editToken,
-            'format' => 'json',
-        ];
+    public function createPage(string $term, string $wikiText): bool {
+        try {
+            $this->API_URL = env('MW_API_URL');
+            $editToken = $this->getEditToken();
+            $apiParams = [
+                'action' => 'edit',
+                'title' => env('MW_SANDBOX_PAGE') . '/' . $term,
+                'createonly' => true,
+                'bot' => true,
+                'summary' => env('MW_SANDBOX_COMMENT'),
+                'text' => $wikiText,
+                // 'token' => $editToken,
+                'format' => 'json',
+            ];
 
-        return json_decode( $this->commitChange($apiParams));
+            $result = json_decode($this->commitChange($apiParams));
+            print_r($result);
+            if(!property_exists($result , "error")){
+                return true;
+            }
+        } catch (Exception $e){
+            // TODO: Do something with the error, log it etc.
+        }
+
+        return false;
     }
 
+
+    public function addSection(string $term, string $wikiText): bool {
+        try {
+            $this->API_URL = env('MW_API_URL');
+            $editToken = $this->getEditToken();
+            $apiParams = [
+                'action' => 'edit',
+                'title' => env('MW_SANDBOX_PAGE'),
+                'summary' => '+' . $term  . ' | ' . env('MW_SANDBOX_COMMENT'),
+                'appendtext' => "\r\n". "\r\n" . $wikiText,
+                'token' => $editToken,
+                'bot' => true,
+                'format' => 'json',
+            ];
+
+            $result = json_decode($this->commitChange($apiParams));
+            print_r($result);
+            if(!property_exists($result , "error")){
+                return true;
+            }
+        } catch (Exception $e){
+            // TODO: Do something with the error, log it etc.
+        }
+
+        return false;
+    }
     /**
      * @throws Exception
      */

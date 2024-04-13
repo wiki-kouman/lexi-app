@@ -13,7 +13,7 @@ class OAuthService
     public static function getClient (): Client {
         $conf = new ClientConfig( env('MW_OAUTH_URL') );
         $conf->setConsumer( new Consumer(env('MW_OAUTH_KEY'), env('MW_OAUTH_SECRET') ) );
-        $conf->setUserAgent( 'KoumanApp MediaWikiOAuthClient/1.0' );
+        $conf->setUserAgent( env('MW_USER_AGENT') );
 
         return new Client( $conf );
     }

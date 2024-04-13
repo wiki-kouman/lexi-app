@@ -13,7 +13,7 @@
     "Preview": "Prévisualiser",
     "Confirm": "Confirmer",
     "Cancel": "Annuler",
-    "Back": "Revenir",
+    "Back": "Retourner",
     "missing": "inexistant",
     "results found": "résultats trouvés",
     "Adjective": "Adjectif qualificatif",
@@ -23,5 +23,9 @@
     "Choose category": "Choisir la catégorie",
     "Choose language": "Choisir la langue",
     "Language": "Langue",
-    "Grammar category": "Catégorie grammaticale"
+    "Grammar category": "Catégorie grammaticale",
+    "Error": "Erreur",
+    "Success": "Succès",
+    "The change you requested has failed. Please try again.": "La modification que vous avez tentée a échouée. Veuillez réessayer plus tard.",
+    "The page was updated successfully.": "Vos modifications ont bien été enregistrées."
 }

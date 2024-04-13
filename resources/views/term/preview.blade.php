@@ -13,6 +13,7 @@
             <form action="/wiki/create" method="post" style="display: inline-block">
                 @csrf <!-- {{ csrf_field() }} -->
                 <input type="hidden" name="wikiText" value="{{$wikiText}}">
+                <input type="hidden" name="term" value="{{$label}}">
                 <button type="submit" class="btn btn-primary btn-sm btn-save"><i class="fa fa-check"></i> {{__('Confirm')}}</button>
             </form>
 
