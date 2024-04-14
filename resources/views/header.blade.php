@@ -15,8 +15,7 @@
     <link rel="stylesheet" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//code.jquery.com/jquery.min.js"></script>
-
-    @vite('resources/css/app.css')
+    <link rel="stylesheet" href="/css/app.css">
     <!-- Styles -->
 </head>
 <body class="antialiased">
