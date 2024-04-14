@@ -1,4 +1,4 @@
-<form action="/wiki/preview?operation=add" method="post">
+<form action="/wiki/preview?operation=update" method="post">
     @csrf <!-- {{ csrf_field() }} -->
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -59,7 +59,7 @@
                 <input type="text" class="form-control" name="exampleTranslation[]">
             </div>
         </div>
-        <input type="hidden" name="action" value="/wiki/create"/>
+        <input type="hidden" name="action" value="/wiki/update"/>
     </div>
     <div class="actions form-group">
         <button type="button" class="btn btn-warning btn-sm btn-add"><i class="fa fa-plus"></i> Ajouter</button>

@@ -35,7 +35,7 @@ class WikiTextGenerator {
 
     private function mapLangCodeToWikiCategory(string $langCode): string {
         return match($langCode)  {
-            'adj' => "Catégorie:adioukrou (Côte d’Ivoire)",
+            'adj' => "Catégorie:adioukrou",
             'any' => "Catégorie:agni de Côte d’Ivoire",
             'bci' => "Catégorie:baoulé",
             'bété' => "Catégorie:bété (Côte d’Ivoire)",

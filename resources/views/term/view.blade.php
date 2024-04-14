@@ -2,14 +2,14 @@
 <section class="container boxed">
     <section class="jumbotron">
         <div class="list-group">
-            <p class="lead">Word: <span class="badge badge-light">{{ $term['title'] }}</span></p>
+            <p class="lead">Word: <span class="badge badge-light">{{ $term }}</span></p>
         </div>
     </section>
-    @foreach ($groups as $categories)
-        <h2 class="text-success">{{ $categories[0]->language->code }}</h2>
-        @foreach ($categories as $category)
-            <strong>{{ $category->code }}</strong>
-                @foreach ($category->definitions as $definition)
+    @foreach (array_keys($langCategories) as $language)
+        <h2 class="text-success">{{ $language }}</h2>
+        @foreach ($langCategories[$language] as $category)
+            <strong>{{ $category }}</strong>
+                @foreach ($definitions[$language.$category] as $definition)
                     <p>{{ $definition->label }}</p>
                     @foreach ($definition->examples as $example)
                         <span class="badge badge-primary">Example </span>

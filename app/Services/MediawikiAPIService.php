@@ -41,16 +41,15 @@ class MediawikiAPIService
         return json_decode( self::makeGetRequest($apiParams), true)['parse'];
     }
 
-    public function createPage(string $pageTitle, string $wikiText): bool {
+    public function createPage(string $term, string $pageTitle, string $wikiText): bool {
         try {
-            $this->API_URL = env('MW_API_URL');
             $editToken = $this->getEditToken();
             $apiParams = [
                 'action' => 'edit',
                 'title' => $pageTitle,
                 'createonly' => true,
                 'bot' => true,
-                'summary' => env('MW_SANDBOX_COMMENT'),
+                'summary' => '+' . $term  . ' | ' . env('MW_SANDBOX_COMMENT'),
                 'text' => $wikiText,
                 'token' => $editToken,
                 'format' => 'json',
@@ -68,13 +67,12 @@ class MediawikiAPIService
     }
 
 
-    public function addSection(string $term, string $wikiText): bool {
+    public function addSection(string $pageTitle, string $term, string $wikiText): bool {
         try {
-            $this->API_URL = env('MW_API_URL');
             $editToken = $this->getEditToken();
             $apiParams = [
                 'action' => 'edit',
-                'title' => env('MW_SANDBOX_PAGE'),
+                'title' => $pageTitle,
                 'summary' => '+' . $term  . ' | ' . env('MW_SANDBOX_COMMENT'),
                 'appendtext' => "\r\n". "\r\n" . $wikiText,
                 'token' => $editToken,
@@ -97,7 +95,6 @@ class MediawikiAPIService
      * @throws Exception
      */
     public function editPage(string $term, string $pageContent): array {
-        $this->API_URL = env('MW_API_URL');
         $editToken = $this->getEditToken();
         $apiParams = [
             'action' => 'edit',

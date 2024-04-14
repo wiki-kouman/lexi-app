@@ -5,7 +5,7 @@
             <strong>{{ count($results) }}</strong> {{__('results found')}}
         </button>
         @foreach ($results as $result)
-            <a href="{{ url('/wiki/view', $result->pageid) }}" class="list-group-item list-group-item-action">{{ $result->title }}</a>
+            <a href="{{ url('/wiki/update', $result->pageid) }}" class="list-group-item list-group-item-action">{{ $result->title }}</a>
         @endforeach
         @if(!$isExistent)
             <a href="{{ url('/wiki/add', $term) }}" class="list-group-item list-group-item-action red-link">{{ $term }} ({{__('missing')}})</a>
