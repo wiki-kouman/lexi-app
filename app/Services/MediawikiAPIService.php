@@ -12,7 +12,7 @@ class MediawikiAPIService
     private string $API_URL;
     public function __construct(private Client $client, private Token $accessToken )
     {
-        $this->API_URL = env('MW_API_URL');
+        $this->API_URL = config('app.MW_API_URL');
     }
 
     /**
@@ -49,7 +49,7 @@ class MediawikiAPIService
                 'title' => $pageTitle,
                 'createonly' => true,
                 'bot' => true,
-                'summary' => '+' . $term  . ' | ' . env('MW_SANDBOX_COMMENT'),
+                'summary' => '+' . $term  . ' | ' . config('app.MW_SANDBOX_COMMENT'),
                 'text' => $wikiText,
                 'token' => $editToken,
                 'format' => 'json',
@@ -73,7 +73,7 @@ class MediawikiAPIService
             $apiParams = [
                 'action' => 'edit',
                 'title' => $pageTitle,
-                'summary' => '+' . $term  . ' | ' . env('MW_SANDBOX_COMMENT'),
+                'summary' => '+' . $term  . ' | ' . config('app.MW_SANDBOX_COMMENT'),
                 'appendtext' => "\r\n". "\r\n" . $wikiText,
                 'token' => $editToken,
                 'bot' => true,
@@ -98,9 +98,9 @@ class MediawikiAPIService
         $editToken = $this->getEditToken();
         $apiParams = [
             'action' => 'edit',
-            'title' => '[Test] Editing [[' . $term . ']] / ' . env('MW_SANDBOX_PAGE'),
+            'title' => '[Test] Editing [[' . $term . ']] / ' . config('app.MW_SANDBOX_PAGE'),
             'section' => 'Test',
-            'summary' => env('MW_SANDBOX_COMMENT'),
+            'summary' => config('app.MW_SANDBOX_COMMENT'),
             'text' => $pageContent,
             'token' => $editToken,
             'format' => 'json',
@@ -121,7 +121,7 @@ class MediawikiAPIService
 
     private static function makeGetRequest(array $params): bool|string
     {
-        $urlRequest = env('MW_API_URL') . '?';
+        $urlRequest = config('app.MW_API_URL') . '?';
         $urlRequest .= http_build_query($params);
 
         return file_get_contents($urlRequest);
@@ -132,7 +132,7 @@ class MediawikiAPIService
      */
     public function getUserInfo()
     {
-        $apiURL = env('MW_API_URL');
+        $apiURL = config('app.MW_API_URL');
         return json_decode( $this->client->makeOAuthCall(
             $this->accessToken,
             "$apiURL?action=query&meta=userinfo&uiprop=rights&format=json"

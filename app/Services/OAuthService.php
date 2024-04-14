@@ -11,9 +11,9 @@ use Throwable;
 class OAuthService
 {
     public static function getClient (): Client {
-        $conf = new ClientConfig( env('MW_OAUTH_URL') );
-        $conf->setConsumer( new Consumer(env('MW_OAUTH_KEY'), env('MW_OAUTH_SECRET') ) );
-        $conf->setUserAgent( env('MW_USER_AGENT') );
+        $conf = new ClientConfig( config('app.MW_OAUTH_URL') );
+        $conf->setConsumer( new Consumer(config('app.MW_OAUTH_KEY'), config('app.MW_OAUTH_SECRET') ) );
+        $conf->setUserAgent( config('app.MW_USER_AGENT') );
 
         return new Client( $conf );
     }

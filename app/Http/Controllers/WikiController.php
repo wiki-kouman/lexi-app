@@ -33,7 +33,7 @@ class WikiController extends Controller {
     public function preUpdate(int $termId): View {
         $result = MediawikiAPIService::getTermById($termId);
         $term = $result['title'];
-        $pageURL = env('MW_ROOT_URL') . '/' . $term;
+        $pageURL = config('app.MW_ROOT_URL') . '/' . $term;
         return view('term/update', compact('term', 'pageURL'));
     }
 
@@ -89,8 +89,8 @@ class WikiController extends Controller {
         $client = OAuthService::getClient();
         $accessToken = OAuthService::getAccessToken();
         $mediawikiAPIService = new MediawikiAPIService($client, $accessToken);
-        $pageTitle = env('MW_SANDBOX_PAGE') . '/' . $term;
-        $newURL = env('MW_ROOT_URL') . '/' . env('MW_SANDBOX_PAGE') . '/' . $term;
+        $pageTitle = config('app.MW_SANDBOX_PAGE') . '/' . $term;
+        $newURL = config('app.MW_ROOT_URL') . '/' . config('app.MW_SANDBOX_PAGE') . '/' . $term;
         $status = $mediawikiAPIService->createPage($term, $pageTitle, $wikiText);
 
         // Display an error message if there's a failure
@@ -111,8 +111,8 @@ class WikiController extends Controller {
         $client = OAuthService::getClient();
         $accessToken = OAuthService::getAccessToken();
         $mediawikiAPIService = new MediawikiAPIService($client, $accessToken);
-        $pageTitle = env('MW_SANDBOX_PAGE') . '/' . $term;
-        $newURL = env('MW_ROOT_URL') . '/' . env('MW_SANDBOX_PAGE') . '/' . $term;
+        $pageTitle = config('app.MW_SANDBOX_PAGE') . '/' . $term;
+        $newURL = config('app.MW_ROOT_URL') . '/' . config('app.MW_SANDBOX_PAGE') . '/' . $term;
         $status = $mediawikiAPIService->addSection($pageTitle, $term, $wikiText);
 
         // Display an error message if there's a failure

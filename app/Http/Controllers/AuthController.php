@@ -5,14 +5,14 @@
     use App\OAuthClient\Exception;
     use App\Services\MediawikiAPIService;
     use App\Services\OAuthService;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Routing\Redirector;
     use Illuminate\View\View;
 
     class AuthController extends Controller
 	{
-        private OAuthService $service;
 
-        public function home (): View | Redirector {
+        public function home(): View | RedirectResponse {
             if(OAuthService::isLoggedIn()){
                 return redirect('home');
             }
@@ -22,7 +22,7 @@
         /**
          * @throws Exception
          */
-        public function login(): View | Redirector{
+        public function login(): View | RedirectResponse{
             // Configure the OAuth client with the URL and consumer details.
             $client = OAuthService::getClient();
             list( $oauthUrl, $token ) = $client->initiate();
@@ -31,7 +31,7 @@
             return redirect($oauthUrl);
         }
 
-        public function callback() : null | Redirector{
+        public function callback() : null | RedirectResponse{
             if ( !isset( $_GET['oauth_verifier'] ) ) {
                 echo "This page should only be access after redirection back from the wiki.";
                 exit( 1 );
@@ -51,7 +51,7 @@
         /**
          * @throws Exception
          */
-        public function loggedout(): View {
+        public function loggedIn(): View {
             $client = OAuthService::getClient();
             $accessToken = OAuthService::getAccessToken();
 
@@ -61,7 +61,7 @@
             return view('/home/logged-in', compact('user'));
         }
 
-        public function logout (): Redirector {
+        public function logout (): RedirectResponse|Redirector {
             OAuthService::clearSession();
             return redirect('/');
         }

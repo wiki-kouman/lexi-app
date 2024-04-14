@@ -10,7 +10,7 @@ class Authenticate
 {
     public function handle(Request $request, Closure $next)
     {
-        $allowedRoutes = [ '/', 'login', 'logout', 'oauth-callback' ];
+        $allowedRoutes = [ '/', 'login', 'logout', 'about', 'oauth-callback' ];
 
         if(!OAuthService::isLoggedIn() && !in_array($request->path(), $allowedRoutes)){
             return redirect('/');
