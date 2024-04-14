@@ -48,7 +48,9 @@ class WikiTextGenerator {
             'noun' => "nom",
             'verb' => "verbe",
             'adj' => "adj",
+            'adj-int' => "adj-int",
             'adv' => "adverbe",
+            'interj' => "interj",
             'default' => $grammarCategory,
         };
     }

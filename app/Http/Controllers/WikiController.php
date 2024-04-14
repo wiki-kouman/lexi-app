@@ -31,16 +31,23 @@ class WikiController extends Controller {
     }
 
     public function update(int $termId): View {
-        $term = MediawikiAPIService::getTermById($termId);
-        return view('term/update', compact('term'));
+        $result = MediawikiAPIService::getTermById($termId);
+        $parser = new WikiTextParser($result['title'], $result['wikitext']['*'], $result['pageid']);
+        $term = $result['title'];
+        $parsedTerm = $parser->parse();
+        $langCategories = $parsedTerm->languagesAndCategories;
+        $definitions = $parsedTerm->definitions;
+        return view('term/view', compact('term', 'langCategories', 'definitions'));
     }
 
     public function view (string $termId): View {
-        $term = MediawikiAPIService::getTermById($termId);
-        $parser = new WikiTextParser($term['title'], $term['wikitext']['*'], $term['pageid']);
-        $lexeme = $parser->parse();
-        $groups = $lexeme->getCategoriesGroupedByLanguages();
-        return view('term/view', compact('term', 'groups'));
+        $result = MediawikiAPIService::getTermById($termId);
+        $parser = new WikiTextParser($result['title'], $result['wikitext']['*'], $result['pageid']);
+        $term = $result['title'];
+        $parsedTerm = $parser->parse();
+        $langCategories = $parsedTerm->languagesAndCategories;
+        $definitions = $parsedTerm->definitions;
+        return view('term/view', compact('term', 'langCategories', 'definitions'));
     }
 
     public function preview(Request $request): View {

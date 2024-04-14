@@ -12,11 +12,10 @@ class WikiTextParserTest extends TestCase
         $wikiText = file_get_contents('./sample/sampleWikiText.txt');
         $this->parser = new WikiTextParser('barra', $wikiText);
     }
-    public function test_extract_lexeme_should_contain_categories(): void
+    public function test_extract_term_should_contain_categories(): void
     {
-        $lexeme = $this->parser->parse();
-        // echo(json_encode($lexeme));
-        $this->assertTrue(count($lexeme->getCategories()) > 1);
+        $term = $this->parser->parse();
+        $this->assertTrue(count($term->categories) > 1);
     }
 
     public function test_extract_types_should_return_array(): void
@@ -34,22 +33,28 @@ class WikiTextParserTest extends TestCase
         * {{écouter|Lyon (France)||lang=fr|audio=LL-Q150 (fra)-Lyokoï-bara.wav}}
         EOT;
 
-        $types = $this->parser->extractCategories($wikitext, 'fr');
+        $types = $this->parser->extractEntities($wikitext);
         $this->assertNotEmpty($types);
     }
 
 
     public function test_extract_definitions_should_return_array(): void
     {
+        $languageCode = 'dyu';
+        $categoryCode = 'nom';
         $wikitext = <<<EOT
-        === {{S|nom|dyu}} ===
+        === {{S|$languageCode|$categoryCode}} ===
         '''bara''' {{pron||dyu}}
         # Travail.
         #*'''''Bara''' be thiama''
         #:Il y a beaucoup de travail
         EOT;
 
-        $definitions = $this->parser->extractDefinitions($wikitext, );
+        $definitions = $this->parser->extractDefinitions(
+            $wikitext,
+            $languageCode,
+            $categoryCode
+        );
         $this->assertNotEmpty($definitions);
     }
 }

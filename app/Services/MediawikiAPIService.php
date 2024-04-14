@@ -57,7 +57,6 @@ class MediawikiAPIService
             ];
 
             $result = json_decode($this->commitChange($apiParams));
-            print_r($result);
             if(!property_exists($result , "error")){
                 return true;
             }
