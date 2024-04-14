@@ -12,6 +12,8 @@
     class AuthController extends Controller
 	{
 
+        private string $MESSAGE_ERROR = 'An error occured while trying to login. Please try again.';
+
         public function home(): View | RedirectResponse {
             if(OAuthService::isLoggedIn()){
                 return redirect('home');
@@ -31,21 +33,27 @@
             return redirect($oauthUrl);
         }
 
-        public function callback() : null | RedirectResponse{
+        public function callback() : View | RedirectResponse{
             if ( !isset( $_GET['oauth_verifier'] ) ) {
                 echo "This page should only be access after redirection back from the wiki.";
                 exit( 1 );
             }
 
-            // Configure the OAuth client with the URL and consumer details.
-            $client = OAuthService::getClient();
-            $requestToken = OAuthService::getRequestToken();
+            try{
+                // Configure the OAuth client with the URL and consumer details.
+                $client = OAuthService::getClient();
+                $requestToken = OAuthService::getRequestToken();
 
-            // Send an HTTP request to the wiki to retrieve an Access Token.
-            $accessToken = $client->complete( $requestToken,  $_GET['oauth_verifier'] );
-            OAuthService::addAccessTokenToSession($accessToken);
+                // Send an HTTP request to the wiki to retrieve an Access Token.
+                $accessToken = $client->complete( $requestToken,  $_GET['oauth_verifier'] );
+                OAuthService::addAccessTokenToSession($accessToken);
+                return redirect('/home');
 
-            return redirect('/home');
+            } catch (Exception $exception){
+                $message = $this->MESSAGE_ERROR;
+                return view('messages/error', compact('message'));
+            }
+
         }
 
         /**
