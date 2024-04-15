@@ -14,6 +14,7 @@ Homestead.yaml
 auth.json
 npm-debug.log
 yarn-error.log
+deploy.sh
 /.fleet
 /.idea
 /.vscode
