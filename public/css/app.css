@@ -58,11 +58,10 @@ a:hover {
 
 /* Footer */
 #footer {
-    /*position: absolute;*/
-    bottom: 0px;
+    /* position: absolute; */
+    bottom: 0;
     width: 100%;
     height: 60px;
-    line-height: 60px;
 }
 
 #footer a {
@@ -74,6 +73,9 @@ a:hover {
     padding-left: 0px;
 }
 
+.search-form-inline{
+    flex-flow: unset;
+}
 .btn-logout {
     display: inline-block;
     padding: 3px 10px;
@@ -128,6 +130,7 @@ span.highlight{
 */
 .keyboard-button {
     margin-left: 5px;
+    margin-right: 5px;
 }
 
 .red-link {
