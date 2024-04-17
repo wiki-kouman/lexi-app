@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Services;
 
 use App\Services\WikiTextParser;
 use PHPUnit\Framework\TestCase;

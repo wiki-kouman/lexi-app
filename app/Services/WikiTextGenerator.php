@@ -46,11 +46,11 @@ class WikiTextGenerator {
     private function mapGrammarCategoryToTranslation(string $grammarCategory): string {
         return match($grammarCategory)  {
             'noun' => "nom",
+            'pronoun' => "prénom",
             'verb' => "verbe",
-            'adj' => "adj",
-            'adj-int' => "adj-int",
+            'adj' => "adjectif",
             'adv' => "adverbe",
-            'interj' => "interj",
+            'interj' => "interjection",
             'default' => $grammarCategory,
         };
     }

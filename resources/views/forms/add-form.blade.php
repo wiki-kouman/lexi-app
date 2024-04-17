@@ -16,10 +16,10 @@
             <select id="category" class="custom-select mr-sm-2"  name="category" required>
                 <option value="">{{__('Choose category')}}...</option>
                 <option value="noun">{{__('Noun')}}</option>
-                <option value="verb">{{__('Verbe')}}</option>
+                <option value="pronoun">{{__('Pronoun')}}</option>
                 <option value="adv">{{__('Adverb')}}</option>
                 <option value="adj">{{__('Adjective')}}</option>
-                <option value="adj-int">{{__('Interogative Adjective')}}</option>
+                <option value="verb">{{__('Verbe')}}</option>
                 <option value="interj">{{__('Interjection')}}</option>
             </select>
         </div>
