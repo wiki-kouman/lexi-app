@@ -1,9 +1,9 @@
 @include('header')
 <section class="container boxed">
-    <section class="jumbotron">
-        <div class="list-group">
-            <h5>{{__('Well done')}}! <span class="badge badge-success">{{__($message)}}</span></h5>
-        </div>
+    <section class="jumbotron" role="alert">
+        <h4 class="alert-heading">{{__('Well done')}}!</h4>
+        <hr>
+        <p>{{__($message)}}</p>
     </section>
     <div class="input-group gap-10">
         <a href="{{ $newURL }}" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-globe"></i> {{__('See changes')}}</a>

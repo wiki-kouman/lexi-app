@@ -13,6 +13,7 @@ use Illuminate\View\View;
 class WikiController extends Controller {
     private string $MESSAGE_SUCCESS = 'The page was updated successfully.';
     private string $MESSAGE_ERROR = 'The change you requested has failed. Please try again.';
+    private string $MESSAGE_EMPTY_FIELDS = 'Sorry, it seems some information was not provided. Please make sure you provided details such as category, language and examples.';
 
     public function search(Request $request): View {
         $validator = Validator::make(
@@ -65,7 +66,7 @@ class WikiController extends Controller {
         ];
         $validator = Validator::make($request->all(), $validationRules);
         if($validator->fails()){
-            $message = $this->MESSAGE_ERROR;
+            $message = $this->MESSAGE_EMPTY_FIELDS;
             return view('messages/error', compact('message'));
         }
 
