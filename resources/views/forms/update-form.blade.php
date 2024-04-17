@@ -1,3 +1,4 @@
+@include('forms/error-modal')
 <form action="/wiki/preview?operation=update" method="post">
     @csrf <!-- {{ csrf_field() }} -->
     <div class="form-row">

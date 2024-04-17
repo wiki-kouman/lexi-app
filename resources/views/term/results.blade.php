@@ -2,7 +2,7 @@
 <section class="container boxed">
     <div class="list-group">
         <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
-            <strong>{{ count($results) }}</strong> {{__('results found')}}
+            {{__('Results found')}}
         </button>
         @foreach ($results as $result)
             <a href="{{ url('/wiki/update', $result->pageid) }}" class="list-group-item list-group-item-action">{{ $result->title }}</a>

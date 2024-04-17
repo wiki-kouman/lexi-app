@@ -33,13 +33,16 @@ $(function () {
     const deleteButtonSelector = '.actions .btn-delete'
     const repeaterSelector = '.repeater-container'
     const repeaterCountSelector = 'span.repeater-count'
+    const submitFormButtonSelector = '.actions button[type="submit"]'
     const languageDropdown = $('#language')
+    const categoryDropdown = $('#category')
 
     /**
      * Use previously defined selectors
      */
     const addButton = $(addButtonSelector)
     const deleteButton = $(deleteButtonSelector)
+    const submitFormButton = $(submitFormButtonSelector)
 
     /**
      * Display and hide visibility buttons
@@ -57,6 +60,21 @@ $(function () {
             $(repeaterCountSelector).removeClass('hidden')
         }
     }
+
+    /**
+     * Validate form fields
+     */
+    submitFormButton.click((e) => {
+        e.preventDefault();
+        let form = $('form')[0];
+        if (form.checkValidity() === false) {
+            $('#errorModal .modal-body').text()
+            $('#errorModal').modal('show')
+            form.classList.add('was-validated');
+        } else{
+            form.submit()
+        }
+    })
 
     const updateRepeaterCount = () => {
         let i = 0
