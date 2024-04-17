@@ -6,7 +6,7 @@
         </div>
     </section>
     <div class="input-group">
-        <a href="javascript:history.go(-2,)" class="btn btn-primary btn btn-cancel"><i class="fa fa-chevron-left"></i> {{__('Back')}}</a>
+        <a href="javascript:history.back()" class="btn btn-primary btn btn-cancel"><i class="fa fa-chevron-left"></i> {{__('Back')}}</a>
     </div>
     <br>
 </section>

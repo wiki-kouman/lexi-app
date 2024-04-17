@@ -33,9 +33,10 @@ $(function () {
     const deleteButtonSelector = '.actions .btn-delete'
     const repeaterSelector = '.repeater-container'
     const repeaterCountSelector = 'span.repeater-count'
+    const errorModalSelector = '#errorModal'
+    const errorModalTextSelector = '#errorModal .modal-body'
     const submitFormButtonSelector = '.actions button[type="submit"]'
     const languageDropdown = $('#language')
-    const categoryDropdown = $('#category')
 
     /**
      * Use previously defined selectors
@@ -68,8 +69,8 @@ $(function () {
         e.preventDefault();
         let form = $('form')[0];
         if (form.checkValidity() === false) {
-            $('#errorModal .modal-body').text()
-            $('#errorModal').modal('show')
+            $(errorModalTextSelector).text()
+            $(errorModalSelector).modal('show')
             form.classList.add('was-validated');
         } else{
             form.submit()

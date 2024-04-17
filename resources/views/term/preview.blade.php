@@ -10,7 +10,7 @@
         </div>
         <div class="preview actions form-group">
             <a href="javascript:history.back()" class="btn btn-warning btn-sm btn-cancel"><i class="fa fa-times"></i> {{__('Cancel')}}</a>
-            <form action="{{$action}}" method="post" style="display: inline-block">
+            <form action="{{$operation}}" method="post" style="display: inline-block">
                 @csrf <!-- {{ csrf_field() }} -->
                 <input type="hidden" name="wikiText" value="{{$wikiText}}">
                 <input type="hidden" name="term" value="{{$label}}">

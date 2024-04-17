@@ -7,19 +7,25 @@ use App\Services\WikiTextGenerator;
 use App\Services\WikiTextParser;
 use App\Services\MediawikiAPIService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class WikiController extends Controller {
     private string $MESSAGE_SUCCESS = 'The page was updated successfully.';
     private string $MESSAGE_ERROR = 'The change you requested has failed. Please try again.';
 
-    public function search(Request $request) {
-        if ( $request->get('term') == null) {
-            echo "A parameter is missing";
-            exit( 1 );
+    public function search(Request $request): View {
+        $validator = Validator::make(
+            $request->all(), [ 'term' => 'required|alpha' ]
+        );
+
+        if($validator->fails()){
+            $message = $this->MESSAGE_ERROR;
+            return view('messages/error', compact('message'));
         }
 
-        $term = $_GET['term'];
+
+        $term = $request->get('term');
         $results = MediawikiAPIService::findByTerm($term);
         $isExistent = MediawikiAPIService::isExistent($term);
 
@@ -48,7 +54,22 @@ class WikiController extends Controller {
     }
 
     public function preview(Request $request): View {
-        $action = $request->get('action');
+        $validationRules = [
+            'operation'                 => 'required|alpha',
+            'definitionLabel'           => 'required|alpha',
+            'definitionTranslation'     => 'required|min:3',
+            'category'                  => 'required|alpha',
+            'language'                  => 'required|alpha',
+            'exampleLabel'              => 'nullable|array',
+            'exampleTranslation'        => 'nullable|array'
+        ];
+        $validator = Validator::make($request->all(), $validationRules);
+        if($validator->fails()){
+            $message = $this->MESSAGE_ERROR;
+            return view('messages/error', compact('message'));
+        }
+
+        $operation = $request->get('operation');
         $label = $request->get('definitionLabel');
         $translation = $request->get('definitionTranslation');
         $grammarCategory = $request->get('category');
@@ -75,12 +96,19 @@ class WikiController extends Controller {
                 'htmlText',
                 'wikiText',
                 'label',
-                'action'
+                'operation'
             )
         );
     }
 
     public function add(Request $request): View {
+        $validationRules = [
+            'term'               => 'required|alpha',
+            'wikiText'           => 'required'
+        ];
+
+        $request->validate($validationRules);
+
         $wikiText = $request->get("wikiText");
         $term = $request->get("term");
         $message = $this->MESSAGE_ERROR;
@@ -103,6 +131,13 @@ class WikiController extends Controller {
     }
 
     public function update(Request $request): View {
+        $validationRules = [
+            'term'               => 'required|alpha',
+            'wikiText'           => 'required'
+        ];
+
+        $request->validate($validationRules);
+
         $message = $this->MESSAGE_ERROR;
         $wikiText = $request->get("wikiText");
         $term = $request->get("term");
