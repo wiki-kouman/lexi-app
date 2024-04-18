@@ -8,7 +8,7 @@ class WikiTextGenerator {
         $categoryCode = $this->mapGrammarCategoryToTranslation($grammarCategory);
         $wikiText = "=== {{S|$categoryCode|$langCode}} ===" . "\r\n";
         $wikiText .= "'''$label''' {{pron||$langCode}}" . "\r\n";
-        $wikiText .= "# $translation" . "\r\n";
+        $wikiText .= "# ". $this->sentenceFormat($translation) . "\r\n";
 
         for ($i = 0; $i < count($exampleLabels); $i++) {
             $examplelabel = $this->sentenceFormat($exampleLabels[$i]);
@@ -57,12 +57,16 @@ class WikiTextGenerator {
     public function sentenceFormat(string $text): string
     {
         // Enforce capitalization of first character
-        $text = ucfirst($text);
+        $text = $this->mb_ucfirst(trim($text));
 
         // Add ending full-stop, if missing
-        if(!str_ends_with($text, '.')){
+        if (!preg_match('/[.?!]$/', $text)) {
             $text .= '.';
         }
         return $text;
+    }
+
+    private function mb_ucfirst(string $str, ?string $encoding = null): string {
+        return mb_strtoupper(mb_substr($str, 0, 1, $encoding), $encoding) . mb_substr($str, 1, null, $encoding);
     }
 }

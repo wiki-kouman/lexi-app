@@ -22,4 +22,12 @@ class WikiTextGeneratorTest extends TestCase
         $this->assertTrue(str_ends_with($formattedText, '.'));
         $this->assertTrue(str_starts_with($formattedText, 'L'));
     }
+
+
+    public function test_sentence_format_should_detect_existing_punctuations(): void
+    {
+        $text = "lorem ipsum dolor ? ";
+        $formattedText = $this->generator->sentenceFormat($text);
+        $this->assertTrue(str_ends_with($formattedText, '?'));
+    }
 }
