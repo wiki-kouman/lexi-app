@@ -89,7 +89,6 @@ class WikiController extends Controller {
         );
 
         $wikiText = $wikiTextGenerator->addNewLanguageSection($langCode) . $wikiText;
-        $wikiText .= $wikiTextGenerator->addWikiCategory($langCode);
         $htmlText = MediawikiAPIService::previewWikiText($wikiText);
 
         return view('term/preview',

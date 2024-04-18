@@ -143,6 +143,9 @@ span.highlight{
  * Preview boxes
  */
 
+.wiki-text-box{
+    white-space: pre-wrap;
+}
 .html-text-box{
     border-left: solid 1px #eeebeb;
     padding-left: 25px;

@@ -13,8 +13,7 @@ class WikiTextGenerator {
         for ($i = 0; $i < count($exampleLabels); $i++) {
             $examplelabel = $exampleLabels[$i];
             $exampleTranslation = $exampleTranslations[$i];
-            $wikiText .= "#* $examplelabel" . "\r\n";
-            $wikiText .= "#*: $exampleTranslation" . "\r\n";
+            $wikiText .= "#* {{exemple |$examplelabel |sens=$exampleTranslation |lang=$langCode}}" . "\r\n";
         }
 
         return $wikiText;
