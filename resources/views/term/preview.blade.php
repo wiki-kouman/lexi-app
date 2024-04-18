@@ -9,7 +9,7 @@
             <div class="col-md-6 html-text-box">{!! $htmlText !!}</div>
         </div>
         <div class="preview actions form-group">
-            <a href="javascript:history.back()" class="btn btn-warning btn-sm btn-cancel"><i class="fa fa-times"></i> {{__('Cancel')}}</a>
+            <a href="javascript:window.history.back()" class="btn btn-warning btn-sm btn-cancel"><i class="fa fa-times"></i> {{__('Cancel')}}</a>
             <form action="{{$operation}}" method="post" style="display: inline-block">
                 @csrf <!-- {{ csrf_field() }} -->
                 <input type="hidden" name="wikiText" value="{{$wikiText}}">

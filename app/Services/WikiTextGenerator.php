@@ -11,8 +11,8 @@ class WikiTextGenerator {
         $wikiText .= "# $translation" . "\r\n";
 
         for ($i = 0; $i < count($exampleLabels); $i++) {
-            $examplelabel = $exampleLabels[$i];
-            $exampleTranslation = $exampleTranslations[$i];
+            $examplelabel = $this->sentenceFormat($exampleLabels[$i]);
+            $exampleTranslation = $this->sentenceFormat($exampleTranslations[$i]);
             $wikiText .= "#* {{exemple |$examplelabel |sens=$exampleTranslation |lang=$langCode}}" . "\r\n";
         }
 
@@ -42,7 +42,7 @@ class WikiTextGenerator {
         };
     }
 
-    private function mapGrammarCategoryToTranslation(string $grammarCategory): string {
+    public function mapGrammarCategoryToTranslation(string $grammarCategory): string {
         return match($grammarCategory)  {
             'noun' => "nom",
             'pronoun' => "prénom",
@@ -52,5 +52,17 @@ class WikiTextGenerator {
             'interj' => "interjection",
             'default' => $grammarCategory,
         };
+    }
+
+    public function sentenceFormat(string $text): string
+    {
+        // Enforce capitalization of first character
+        $text = ucfirst($text);
+
+        // Add ending full-stop, if missing
+        if(!str_ends_with($text, '.')){
+            $text .= '.';
+        }
+        return $text;
     }
 }
