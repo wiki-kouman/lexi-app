@@ -50,5 +50,10 @@
     "Please use the fields of the form below to add new definition and some examples for improving": "Veuillez utiliser les champs du formulaire ci-dessous pour ajouter une nouvelle définition et quelques exemples afin d'améliorer le mot",
     "This word does not contain any definition or examples yet. Please use the fields of the form below to create": "Ce mot ne contient pas encore de définition ni d’exemple. Merci d'utiliser les champs du formulaire ci-dessous pour créer le mot",
     "The page was updated successfully.": "Vos modifications ont été enregistrées.",
-    "Sorry, it seems that the section you are trying to add already exists on the Wikitionary page.": "Désolé, il semble que la section que vous essayez d'ajouter existe déjà sur la page Wikitionnaire."
+    "Sorry, it seems that the section you are trying to add already exists on the Wikitionary page.": "Désolé, il semble que la section que vous essayez d'ajouter existe déjà sur la page Wikitionnaire.",
+	"You need to choose a language from the list.": "Vous devez choisir une langue dans la liste.",
+	"You need to choose a grammar category.": "Vous devez choisir une catégorie grammaticale.",
+	"This field is required, but it seems empty.": "Ce champ est requis, mais il semble vide.",
+	"Please make sure you have included a translation.": "Veuillez vous assurer d'avoir inclus une traduction.",
+	"It seems that your example does not include a word in bold.": "Il semble que votre exemple ne contient pas de mot en gras."
 }

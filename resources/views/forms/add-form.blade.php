@@ -10,6 +10,7 @@
                 <option value="any">Agni</option>
                 <option value="bci">Baoulé</option>
             </select>
+			<div class="invalid-feedback">{{__('You need to choose a language from the list.')}}</div>
         </div>
         <div class="form-group col-md-6">
             <label for="category">{{__('Grammar category')}}</label>
@@ -22,6 +23,7 @@
                 <option value="verb">{{__('Verbe')}}</option>
                 <option value="interj">{{__('Interjection')}}</option>
             </select>
+			<div class="invalid-feedback">{{__('You need to choose a grammar category.')}}</div>
         </div>
     </div>
     <div class="lexeme-attribute definition">
@@ -30,36 +32,39 @@
         <div class="input-group form-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">{{__('Word')}}</span>
-
             </div>
             <input type="text" class="form-control keyboard-input" value="{{$term}}" name="definitionLabel" required>
             <button type="button" class="btn btn-dark keyboard-button"><i class="fa fa-keyboard-o"></i></button>
-        </div>
+			<div class="invalid-feedback">{{__('This field is required, but it seems empty.')}}</div>
+		</div>
         <div class="input-group form-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">{{__('French')}}</span>
             </div>
             <input type="text" class="form-control" name="definitionTranslation" required>
+			<div class="invalid-feedback">{{__('Please make sure you have included a translation.')}}</div>
         </div>
     </div>
     <div class="example">
-        <div class="lexeme-attribute repeater-container">
-            <label>{{__('Example')}} <span class="repeater-count hidden"></span></label>
+		<div class="lexeme-attribute repeater-container">
+			<label>{{__('Example')}} <span class="repeater-count hidden"></span></label>
 
-            <div class="input-group form-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text source-label" id="exampleLabel">{{__('Example text')}}</span>
-                </div>
-                <input type="text" class="form-control keyboard-input" name="exampleLabel[]" required>
-                <button type="button" class="btn btn-dark keyboard-button"><i class="fa fa-keyboard-o"></i></button>
-            </div>
-            <div class="input-group form-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="exampleTranslation">{{__('French')}}</span>
-                </div>
-                <input type="text" class="form-control" name="exampleTranslation[]" required>
-            </div>
-        </div>
+			<div class="input-group form-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text source-label" id="exampleLabel">{{__('Example text')}}</span>
+				</div>
+				<input type="text" class="form-control keyboard-input" pattern=".*('''.*''').*" name="exampleLabel[]" required>
+				<button type="button" class="btn btn-dark keyboard-button"><i class="fa fa-keyboard-o"></i></button>
+				<div class="invalid-feedback">{{__('It seems that your example does not include a word in bold.')}}</div>
+			</div>
+			<div class="input-group form-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="exampleTranslation">{{__('French')}}</span>
+				</div>
+				<input type="text" class="form-control" name="exampleTranslation[]" required>
+				<div class="invalid-feedback">{{__('Please make sure you have included a translation.')}}</div>
+			</div>
+		</div>
         <input type="hidden" name="operation" value="/wiki/create"/>
     </div>
     <div class="actions form-group">

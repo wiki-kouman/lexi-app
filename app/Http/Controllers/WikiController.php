@@ -6,6 +6,7 @@ use App\Services\OAuthService;
 use App\Services\WikiTextGenerator;
 use App\Services\WikiTextParser;
 use App\Services\MediawikiAPIService;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
@@ -62,11 +63,14 @@ class WikiController extends Controller {
             'definitionTranslation'     => 'required|min:3',
             'category'                  => 'required|alpha',
             'language'                  => 'required|alpha',
-            'exampleLabel'              => 'nullable|array',
-            'exampleTranslation'        => 'nullable|array'
+			'exampleTranslation'        => 'nullable|array',
+			'exampleLabel'              => ["nullable","array"],
+			'exampleLabel.*'              => "regex:/'''.*'''/"
         ];
-        $validator = Validator::make($request->all(), $validationRules);
+
+		$validator = Validator::make($request->all(), $validationRules);
         if($validator->fails()){
+			print_r($validator->messages());
             $message = $this->MESSAGE_EMPTY_FIELDS;
             return view('messages/error', compact('message'));
         }
@@ -175,7 +179,6 @@ class WikiController extends Controller {
             return view('messages/error', compact('message'));
         }
 
-        // $status = false;
         $status = $mediawikiAPIService->editPage($pageTitle, $term, $newWikiText);
         // Display an error message if there's a failure
         if(!$status){

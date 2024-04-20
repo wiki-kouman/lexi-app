@@ -87,12 +87,11 @@ class WikiTextGenerator {
 		$newWikiText = $parser->wikitext;
 
 		if( !empty($closestLangWikitext)) {
-            $regexPattern = "/^==?.*(langue\|$closestLangCode)(?:(?!^\n?.*(langue))[\S\s])*$/m";
-			$newWikiText = preg_replace(
-                $regexPattern,
-                $closestLangWikitext . "\r\n". "\r\n" . $addedWikitext,
-                $newWikiText
-            );
+			$regexPattern = "/(^==?.*(langue\|$closestLangCode)(?:(?!^==?.*(langue))[\S\s])*)/m";
+
+			// Define the replacement string with the new language section
+			$replacement = "$1\n\n$addedWikitext";
+			$newWikiText = preg_replace($regexPattern, $replacement, $newWikiText, 1);
 
         } else if(preg_match("{{langue\|$this->LANG_CODE}}", $parser->wikitext)) {
 			$newWikiText = $parser->wikitext . "\r\n\r\n" . $addedWikitext;

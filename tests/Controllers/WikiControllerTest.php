@@ -4,10 +4,6 @@ namespace Tests\Controllers;
 
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\VerifyCsrfToken;
-use App\Models\User;
-use App\Providers\AuthServiceProvider;
-use App\Services\OAuthService;
-use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 
@@ -26,7 +22,7 @@ class WikiControllerTest extends TestCase
     public function testPreviewShouldReturnProperViewWhenAllFieldsProvided(): void
     {
         $this->postJson(
-            uri: '/wiki/preview?operation=add',
+            uri: '/wiki/preview',
             data: $this->getMockPayload()
         )->assertViewIs('term.preview');
     }
@@ -34,10 +30,22 @@ class WikiControllerTest extends TestCase
     public function testPreviewShouldReturnErrorViewWhenMissingFields(): void
     {
         $payload = $this->getMockPayload();
-        unset($payload['category']);
+		$payload['operation'] = 'add';
+		unset($payload['category']);
 
         $this->postJson(
-            uri: '/wiki/preview?operation=add',
+            uri: '/wiki/preview',
+            data: $payload
+        )->assertViewIs('messages.error');
+    }
+
+    public function testPreviewShouldReturnErrorViewWhenBoldTextMissing(): void
+    {
+        $payload = $this->getMockPayload();
+		$payload['exampleLabel'] = ["lorem ipsum dolor"];
+
+        $this->postJson(
+            uri: '/wiki/preview',
             data: $payload
         )->assertViewIs('messages.error');
     }
@@ -46,9 +54,10 @@ class WikiControllerTest extends TestCase
     {
         $payload = $this->getMockPayload();
         $payload['exampleLabel'] = 'string';
+        $payload['operation'] = 'update';
 
         $this->postJson(
-            uri: '/wiki/preview?operation=update',
+            uri: '/wiki/preview',
             data: $payload
         )->assertViewIs('messages.error');
     }
@@ -58,8 +67,9 @@ class WikiControllerTest extends TestCase
             'category'                  => 'adv',
             'language'                  => 'adj',
             'definitionLabel'           => 'deli',
+            'operation'           		=> 'add',
             'definitionTranslation'     => 'child',
-            'exampleLabel'              => ['lorem ipsum dolor'],
+            'exampleLabel'              => ["lorem ipsum '''dolor'''"],
             'exampleTranslation'        => ['set amet clara']
         ];
     }
