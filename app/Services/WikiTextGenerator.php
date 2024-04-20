@@ -5,7 +5,7 @@ namespace App\Services;
 use function PHPUnit\Framework\isEmpty;
 
 class WikiTextGenerator {
-    private string $DEFAULT_LANGUAGE_CODE = 'fr';
+    private string $LANG_CODE = 'fr';
     private string $CONV_LANGUAGE_CODE = 'conv';
     public function wordToWikiText(string $label, string $translation, string $grammarCategory, string $langCode, array $exampleLabels, array $exampleTranslations): string {
         $categoryCode = $this->mapGrammarCategoryToTranslation($grammarCategory);
@@ -77,26 +77,28 @@ class WikiTextGenerator {
      * If no closest sibling is found, add it at the top.
      * @param WikiTextParser $parser
      * @param string $langCode
-     * @param string $wikiText
+     * @param string $addedWikitext
      * @return string
      */
-    public function appendSection(WikiTextParser $parser, string $langCode, string $wikiText): string
+    public function appendSection(WikiTextParser $parser, string $langCode, string $addedWikitext): string
     {
-        $newWikiText = $parser->wikitext;
         $closestLangCode = $this->getClosestLanguageCode($parser, $langCode);
-        $closestLangWikitext = $this->getClosestLanguageWikitext($closestLangCode, $newWikiText);
+		$closestLangWikitext = $this->getClosestLanguageWikitext($closestLangCode, $parser->wikitext);
+		$newWikiText = $parser->wikitext;
 
-        if( !empty($closestLangWikitext)) {
-            $regexPattern = "/^==?.*(langue)(?:(?!^\n?.*(langue))[\S\s])*$/m";
-            preg_match_all($regexPattern, $newWikiText, $matches);
-            $insertion_index = array_search($closestLangWikitext, $matches[0]);
-            $matches[0][$insertion_index] = $closestLangWikitext . "\r\n". "\r\n" . $wikiText;
+		if( !empty($closestLangWikitext)) {
+            $regexPattern = "/^==?.*(langue\|$closestLangCode)(?:(?!^\n?.*(langue))[\S\s])*$/m";
+			$newWikiText = preg_replace(
+                $regexPattern,
+                $closestLangWikitext . "\r\n". "\r\n" . $addedWikitext,
+                $newWikiText
+            );
 
-            // Join sections back into a single string
-            $newWikiText = implode("", $matches[0]);
+        } else if(preg_match("{{langue\|$this->LANG_CODE}}", $parser->wikitext)) {
+			$newWikiText = $parser->wikitext . "\r\n\r\n" . $addedWikitext;
         } else {
-            // By default, append it at the end of the text
-            $newWikiText = $wikiText . "\r\n". "\r\n" . $newWikiText;
+            // By default, append it to the top of the text
+            $newWikiText = $addedWikitext . "\r\n\r\n". $parser->wikitext;
         }
 
         return $newWikiText;
@@ -106,16 +108,15 @@ class WikiTextGenerator {
 
         $sections = $parser->term->languagesAndCategories;
         // Discard default language codes as they must remain at the top
-        unset($sections[$this->DEFAULT_LANGUAGE_CODE]);
+        unset($sections[$this->LANG_CODE]);
         unset($sections[$this->CONV_LANGUAGE_CODE]);
         $sections = array_keys($sections);
 
         // Add langCode to an array and sort it to find out where to append the wikitext
-        $closestLangCode = $this->DEFAULT_LANGUAGE_CODE;
+        $closestLangCode = $this->LANG_CODE;
         $sections[] = $newlangCode;
         sort($sections);
         $currentIndex = array_search($newlangCode, $sections);
-
 
         if ($currentIndex > 0 ){
             $closestLangCode = $sections[$currentIndex -1];

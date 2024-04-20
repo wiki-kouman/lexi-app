@@ -163,16 +163,19 @@ class WikiController extends Controller {
 
         // Fail if section already exists on-wiki
         $newLangCode = $parser->extractLanguageCode($newWikiText);
-        if( preg_match("{{langue\|$newLangCode}}", $parser->wikitext)) {
-            $message = $this->MESSAGE_DUPLICATE_SECTION;
-            return view('messages/error', compact('message'));
-        }
 
         // Prepare newer version of the page
         $newWikiText = $generator->appendSection($parser, $newLangCode, $newWikiText);
         $pageTitle = config('app.MW_SANDBOX_PAGE') . '/' . $term;
         $newURL = config('app.MW_ROOT_URL') . '/' . config('app.MW_SANDBOX_PAGE') . '/' . $term;
 
+
+        if( preg_match("{{langue\|$newLangCode}}", $parser->wikitext)) {
+            $message = $this->MESSAGE_DUPLICATE_SECTION;
+            return view('messages/error', compact('message'));
+        }
+
+        // $status = false;
         $status = $mediawikiAPIService->editPage($pageTitle, $term, $newWikiText);
         // Display an error message if there's a failure
         if(!$status){
