@@ -101,7 +101,7 @@ class MediawikiAPIService
                 'text' => $wikiText,
                 'token' => $editToken,
                 'summary' => '+' . $term  . ' | ' . config('app.MW_SANDBOX_COMMENT'),
-                'nocreate' => true,
+                // 'nocreate' => true,
                 'format' => 'json',
             ];
 
