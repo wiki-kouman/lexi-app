@@ -5,12 +5,11 @@ namespace App\Services;
 use App\OAuthClient\Client;
 use App\OAuthClient\Exception;
 use App\OAuthClient\Token;
-use Illuminate\Support\Facades\Log;
 
 class MediawikiAPIService
 {
     private string $API_URL;
-    public function __construct(private Client $client, private Token $accessToken )
+    public function __construct(private readonly Client $client, private readonly Token $accessToken )
     {
         $this->API_URL = config('app.MW_API_URL');
     }
@@ -101,7 +100,7 @@ class MediawikiAPIService
                 'text' => $wikiText,
                 'token' => $editToken,
                 'summary' => '+' . $term  . ' | ' . config('app.MW_SANDBOX_COMMENT'),
-                // 'nocreate' => true,
+				'nocreate' => str(config('app.env')) === 'production',
                 'format' => 'json',
             ];
 
