@@ -1,0 +1,141 @@
+{{voir/abc}}
+== {{langue|conv}} ==
+=== {{S|symbole|conv}} ===
+'''abc'''
+# {{lexique|linguistique|conv}} Code {{w|ISO 639-3}} de l’[[ambala]].
+
+=== {{S|références}} ===
+* {{R:SIL|abc}}
+
+== {{langue|fr}} ==
+=== {{S|étymologie}} ===
+: Composé des trois premières lettres de l’alphabet latin : ''[[a]]'', ''[[b]]'' et ''[[c]]''.
+
+=== {{S|nom|fr}} ===
+{{fr-inv|a.be.se}}
+'''abc''' {{pron|a.be.se|fr}} {{m}} {{s}} {{invar}}
+# Petit [[livret]] contenant l’[[alphabet]] et la [[combinaison]] des [[lettre]]s pour enseigner à [[lire]].
+#* ''J’ai acheté un '''abc''' pour mon enfant.''
+# {{figuré|fr}} {{familier|fr}} Principes [[élémentaire]]s, [[commencement]] d’un art, d’une [[science]].
+#* {{exemple|lang=fr|Ils montrèrent pour ces acquisitions strictement nécessaires, qui étaient l’'''''a b c''''' du métier, d’excellentes dispositions et, un an à peine après leurs premiers contacts avec les études de motivation, on leur confia la lourde responsabilité d’une « analyse de contenu » : c’était immédiatement au-dessous de la direction générale d’une étude, obligatoirement réservée à un cadre sédentaire, le poste le plus élevé, donc le plus cher et partant le plus noble, de toute la hiérarchie.|source={{w|Georges Perec}}, ''{{w|Les Choses}}'', Julliard, 1965, réédition 1984, pages 32-33}}
+#* ''Cannage, nourriture déshydratée, procédé de lyophilisation : l''''abc''' d'une grande et longue expédition réussie passe en grande partie par la gestion des vivres.'' {{source|Radio-Canada, ''Le défi de la gestion des repas lors des grandes expéditions sans escale'', radio-canada.ca, 28 janvier 2021}}
+#* ''Il ignore l’'''abc''' du métier.''
+#* ''Ce n’est là que l’'''abc''' des mathématiques.''
+#* ''Cette maxime est l’'''abc''' de la politique.''
+
+==== {{S|synonymes}} ====
+* [[a b c]]
+* [[ABC]]
+* [[a b c d]] {{très rare|nocat=1}}
+* [[abcd]] {{rare|nocat=1}}
+* [[abécé]] {{vieilli|nocat=1}}
+* [[abécédaire]]
+* [[alphabet]]
+* [[b.a.-ba]]
+* [[base]]
+* [[principe]]
+* [[rudiment]]
+
+==== {{S|dérivés}} ====
+* [[abécédaire]]
+* [[n’en être qu’à l’abc]] (n’en avoir que les premières [[notion]]s)
+* [[remettre à l’abc]] ([[ramener]] aux [[élément]]s, aux [[premier]]s [[principe]]s d’un art, d’une science, etc.)
+* [[renvoyer à l’abc]] {{proverbial|nocat=1}} et {{figuré|nocat=1}} ([[traiter]] d’[[ignorant]])
+
+==== {{S|traductions}} ====
+{{trad-début}}
+* {{T|af}} : {{trad+|af|abc}}, {{trad+|af|alfabet}}
+* {{T|sq}} : {{trad+|sq|abece}}
+* {{T|de}} : {{trad+|de|Alphabet}}, {{trad+|de|Abc}}, {{trad+|de|Anfangsgründe}}
+* {{T|en}} : {{trad+|en|ABC}}, {{trad+|en|fundamental}}, {{trad+|en|element}}, {{trad+|en|rudiment}}, {{trad+|en|basic}}, {{trad+|en|basics}}, {{trad+|en|primer}}, {{trad+|en|alphabet book}}
+*{{T|ca}} : {{trad+|ca|abecé}}, {{trad+|ca|beceroles}}
+* {{T|hr}} : {{trad+|hr|abeceda}}
+* {{T|da}} : {{trad+|da|ABC}}, {{trad+|da|abc}}
+* {{T|es}} : {{trad+|es|abecé}}, {{trad+|es|alfabeto}}
+* {{T|eo}} : {{trad+|eo|elementoj}}, {{trad-|eo|aboco}}
+* {{T|fo}} : {{trad-|fo|stavrað}}, {{trad-|fo|byrjanarstig}}
+* {{T|fur}} : {{trad|fur|abee}}
+* {{T|fy}} : {{trad-|fy|abee}}
+* {{T|gd}} : {{trad-|gd|aibidil}}
+* {{T|hu}} : {{trad+|hu|ábécé}}
+* {{T|is}} : {{trad+|is|stafróf}}
+* {{T|it}} : {{trad+|it|alfabeto}}
+* {{T|ja}} : {{trad+|ja|いろは|R=iroha}}, {{trad+|ja|初歩|R=shoho}}
+* {{T|la}} : {{trad+|la|abecedarium}}
+* {{T|lv}} : {{trad+|lv|ābece}}
+* {{T|nl}} : {{trad+|nl|ABC}}, {{trad+|nl|alfabet}}, {{trad-|nl|basisbeginselen}}, {{trad-|nl|eerste beginselen}}, {{trad+|nl|grondbeginselen}}
+*{{T|oc}} : {{trad-|oc|abecé}}, {{trad-|oc|beçaròlas}}
+* {{T|pap}} : {{trad|pap|alfabèt}}
+* {{T|pes}} : {{trad|pes|علوم مقدماتی}}, {{trad|pes|شروع}}, {{trad|pes|ابتدا}}
+* {{T|pt}} : {{trad-|pt|abc}}, {{trad+|pt|alfabeto}}, {{trad-|pt|conhecimento elementar}}
+* {{T|ru}} : {{trad+|ru|азбука|R=azbouka}}, {{trad+|ru|алфавит|R=alfavit}}, {{trad+|ru|букварь|R=boukvar’}}, {{trad+|ru|азы|R=azy}}
+* {{T|scn}} : {{trad+|scn|abbeccè}}, {{trad+|scn|abbezzè}}, {{trad+|scn|abbizzì}}, {{trad+|scn|bizzè}}
+* {{T|sv}} : {{trad+|sv|abc-bok}} (1), [[först|första]] [[grund|grunder]] (2)
+* {{T|tl}} : {{trad+|tl|abakada}}, {{trad+|tl|alpabeto}}, {{trad-|tl|katitikan}}
+* {{T|tr}} : {{trad+|tr|alfabe}}
+{{trad-fin}}
+
+=== {{S|prononciation}} ===
+* {{pron-rimes|a.be.se|fr}}
+* {{écouter|lang=fr|France (Muntzenheim)|audio=LL-Q150 (fra)-0x010C-abc.wav}}
+* {{écouter|lang=fr|France (Vosges)||audio=LL-Q150 (fra)-LoquaxFR-abc.wav}}
+
+==== {{S|paronymes}} ====
+* [[abaisser]]
+
+=== {{S|anagrammes}} ===
+{{voir anagrammes|fr}}
+
+=== {{S|références}} ===
+*{{Import:DAF8}}
+
+== {{langue|af}} ==
+=== {{S|étymologie}} ===
+: {{ébauche-étym|af}}
+
+=== {{S|nom|af}} ===
+'''abc''' {{pron||af}}
+# [[alphabet|Alphabet]].
+# [[abc#fr|Abc]], [[rudiments]].
+
+==== {{S|synonymes}} ====
+* [[alfabet]]
+
+== {{langue|da}} ==
+=== {{S|étymologie}} ===
+:Des trois premières lettres de l’alphabet latin : ''[[A]]'', ''[[B]]'' et ''[[C]]''.
+
+=== {{S|nom|da}} ===
+{{da-nom-c-er|rac=abc’}}
+'''abc''' {{pron|æbeˈseˀ|da}} {{c}}
+# Manuel d'apprentissage de l’alphabet, de l'orthographe et de la lecture
+# Ensemble de [[rudiment]]s, [[b.a.-ba]], [[#fr|abc]].
+
+==== {{S|variantes orthographiques}} ====
+* {{lien|ABC|da}}
+
+=== {{S|références}} ===
+* {{R:DDO|abc}}
+
+== {{langue|pt}} ==
+=== {{S|étymologie}} ===
+: {{ébauche-étym|pt}}
+
+=== {{S|nom|pt}} ===
+'''abc''' {{pron|ˌa.bˌe.sˈe|pt}} (Lisbonne) {{pron|ˌa.bˌe.sˈe|pt}} (São Paulo) {{m}}
+# [[alphabet|Alphabet]].
+# [[abc#fr|Abc]], [[rudiments]].
+
+==== {{S|synonymes}} ====
+* [[alfabeto]]
+
+=== {{S|prononciation}} ===
+* Lisbonne: {{pron|ˌa.bˌe.sˈe|pt}} (langue standard), {{pron|ˌa.bˌe.sˈe|pt}} (langage familier)
+* São Paulo: {{pron|ˌa.bˌe.sˈe|pt}} (langue standard), {{pron|ˌa.bˌe.sˈe|pt}} (langage familier)
+* Rio de Janeiro: {{pron|ˌa.bˌe.sˈe|pt}} (langue standard), {{pron|ˌa.bˌe.sˈe|pt}} (langage familier)
+* Maputo: {{pron|ˌa.bˌe.sˈe|pt}} (langue standard), {{pron|ˌa.bˌe.sˈe|pt}} (langage familier)
+* Luanda: {{pron|ˌa.bˌe.sˈe|pt}}
+* Dili: {{pron|ˌa.bˌe.sˈe|pt}}
+
+=== {{S|références}} ===
+* {{R:DicionárioFonético|abc|id=73}}

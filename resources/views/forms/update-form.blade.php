@@ -1,5 +1,5 @@
 @include('forms/error-modal')
-<form action="/wiki/preview?operation=update" method="post">
+<form action="/wiki/preview" method="post">
     @csrf <!-- {{ csrf_field() }} -->
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -60,7 +60,7 @@
                 <input type="text" class="form-control" name="exampleTranslation[]">
             </div>
         </div>
-        <input type="hidden" name="action" value="/wiki/update"/>
+        <input type="hidden" name="operation" value="/wiki/update/{{$termId}}"/>
     </div>
     <div class="actions form-group">
         <button type="button" class="btn btn-warning btn-sm btn-add"><i class="fa fa-plus"></i> {{__('Add')}}</button>

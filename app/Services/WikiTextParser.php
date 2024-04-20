@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Models\Definition;
-use App\Models\Language;
 use App\Models\Term;
 
 class WikiTextParser
@@ -12,10 +11,11 @@ class WikiTextParser
 
 
     public Term $term;
+
     public function __construct(
-        private readonly string $label,
-        private readonly string $wikitext,
-        private readonly int    $termId = 0)
+        public string $label,
+        public string $wikitext,
+        public int $termId = 0)
     {
         $this->term= new Term($this->label, []);
     }
@@ -115,7 +115,7 @@ class WikiTextParser
      */
     private function extractCategoryCode(string $wikitext): string
     {
-        $regexPattern = "/===?.{{.*(adverbe|pronom|nom|adjectif|verbe|interjection).*}}/m";
+        $regexPattern = "/===?.{{.*}}/m";
         preg_match_all($regexPattern, $wikitext, $matches);
         return $matches[1][0] ?? '';
     }
@@ -124,7 +124,7 @@ class WikiTextParser
      * @param string $wikitext
      * @return string
      */
-    private function extractLanguageCode(string $wikitext): string
+    public function extractLanguageCode(string $wikitext): string
     {
         $regexPattern = "/{{langue\|(\w+)}}/m";
         preg_match_all($regexPattern, $wikitext, $matches);
@@ -132,7 +132,7 @@ class WikiTextParser
     }
 
     private function extractCategories(string $wikiText): array {
-        $pattern = "/^===?.*(verbe|pronom|nom|adjectif|adj-int|adverbe|interjection)(?:(?!^\n)[\S\s])*$/m";
+        $pattern = "/^===?.*(?:(?!^\n)[\S\s])*$/m";
         // Use Regex to get a high-level list of grammar categories as distinct wikitext blocs
         preg_match_all($pattern, $wikiText, $matches);
 

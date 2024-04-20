@@ -91,22 +91,29 @@ class MediawikiAPIService
 
         return false;
     }
-    /**
-     * @throws Exception
-     */
-    public function editPage(string $term, string $pageContent): array {
-        $editToken = $this->getEditToken();
-        $apiParams = [
-            'action' => 'edit',
-            'title' => '[Test] Editing [[' . $term . ']] / ' . config('app.MW_SANDBOX_PAGE'),
-            'section' => 'Test',
-            'summary' => config('app.MW_SANDBOX_COMMENT'),
-            'text' => $pageContent,
-            'token' => $editToken,
-            'format' => 'json',
-        ];
 
-        return json_decode( $this->commitChange($apiParams));
+    public function editPage(string $pageTitle, string $term, string $wikiText): bool {
+        try {
+            $editToken = $this->getEditToken();
+            $apiParams = [
+                'action' => 'edit',
+                'title' => $pageTitle,
+                'text' => $wikiText,
+                'token' => $editToken,
+                'summary' => '+' . $term  . ' | ' . config('app.MW_SANDBOX_COMMENT'),
+                'nocreate' => true,
+                'format' => 'json',
+            ];
+
+            $result = json_decode($this->commitChange($apiParams));
+
+            if(!property_exists($result , "error")){
+                return true;
+            }
+        } catch (Exception $e){
+            // TODO: Do something with the error, log it etc.
+        }
+        return false;
     }
 
     /**

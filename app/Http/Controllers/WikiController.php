@@ -14,6 +14,7 @@ class WikiController extends Controller {
     private string $MESSAGE_SUCCESS = 'The page was updated successfully.';
     private string $MESSAGE_ERROR = 'The change you requested has failed. Please try again.';
     private string $MESSAGE_EMPTY_FIELDS = 'Sorry, it seems some information was not provided. Please make sure you provided details such as category, language and examples.';
+    private string $MESSAGE_DUPLICATE_SECTION = 'Sorry, it seems that the section you are trying to add already exists on the Wikitionary page.';
 
     public function search(Request $request): View {
         $validator = Validator::make(
@@ -41,7 +42,7 @@ class WikiController extends Controller {
         $result = MediawikiAPIService::getTermById($termId);
         $term = $result['title'];
         $pageURL = config('app.MW_ROOT_URL') . '/' . $term;
-        return view('term/update', compact('term', 'pageURL'));
+        return view('term/update', compact('term', 'termId', 'pageURL'));
     }
 
     public function view (string $termId): View {
@@ -54,9 +55,9 @@ class WikiController extends Controller {
         return view('term/view', compact('term', 'langCategories', 'definitions'));
     }
 
-    public function preview(Request $request): View {
+    public function preview (Request $request): View {
         $validationRules = [
-            'operation'                 => 'required|alpha',
+            'operation'                 => 'required',
             'definitionLabel'           => 'required|alpha',
             'definitionTranslation'     => 'required|min:3',
             'category'                  => 'required|alpha',
@@ -88,7 +89,7 @@ class WikiController extends Controller {
             $exampleTranslations
         );
 
-        $wikiText = $wikiTextGenerator->addNewLanguageSection($langCode) . $wikiText;
+        $wikiText = $wikiTextGenerator->languageToWikiText($langCode) . $wikiText;
         $htmlText = MediawikiAPIService::previewWikiText($wikiText);
 
         return view('term/preview',
@@ -114,9 +115,10 @@ class WikiController extends Controller {
         $message = $this->MESSAGE_ERROR;
 
         // Get requestToken from session
-        $client = OAuthService::getClient();
-        $accessToken = OAuthService::getAccessToken();
-        $mediawikiAPIService = new MediawikiAPIService($client, $accessToken);
+        $mediawikiAPIService = new MediawikiAPIService(
+            OAuthService::getClient(),
+            OAuthService::getAccessToken()
+        );
         $pageTitle = config('app.MW_SANDBOX_PAGE') . '/' . $term;
         $newURL = config('app.MW_ROOT_URL') . '/' . config('app.MW_SANDBOX_PAGE') . '/' . $term;
         $status = $mediawikiAPIService->createPage($term, $pageTitle, $wikiText);
@@ -130,26 +132,48 @@ class WikiController extends Controller {
         return view('messages/success', compact('message', 'newURL'));
     }
 
-    public function update(Request $request): View {
+    public function update(Request $request, int $termId): View {
+        $message = $this->MESSAGE_ERROR;
+
         $validationRules = [
             'term'               => 'required|alpha',
             'wikiText'           => 'required'
         ];
 
-        $request->validate($validationRules);
+        $validator = Validator::make($request->all(), $validationRules);
+        if($validator->fails()){
+            return view('messages/error', compact('message'));
+        }
 
-        $message = $this->MESSAGE_ERROR;
-        $wikiText = $request->get("wikiText");
+        $newWikiText = $request->get("wikiText");
         $term = $request->get("term");
 
+        // TODO: Optimize and move business logic to services
         // Get requestToken from session
-        $client = OAuthService::getClient();
-        $accessToken = OAuthService::getAccessToken();
-        $mediawikiAPIService = new MediawikiAPIService($client, $accessToken);
+        $mediawikiAPIService = new MediawikiAPIService(
+            OAuthService::getClient(),
+            OAuthService::getAccessToken()
+        );
+
+        // Fetch on-wiki version of the page to edit
+        $result = MediawikiAPIService::getTermById($termId);
+        $generator = new WikiTextGenerator;
+        $parser = new WikiTextParser($result['title'], $result['wikitext']['*'], $result['pageid']);
+        $parser->parse();
+
+        // Fail if section already exists on-wiki
+        $newLangCode = $parser->extractLanguageCode($newWikiText);
+        if( preg_match("{{langue\|$newLangCode}}", $parser->wikitext)) {
+            $message = $this->MESSAGE_DUPLICATE_SECTION;
+            return view('messages/error', compact('message'));
+        }
+
+        // Prepare newer version of the page
+        $newWikiText = $generator->appendSection($parser, $newLangCode, $newWikiText);
         $pageTitle = config('app.MW_SANDBOX_PAGE') . '/' . $term;
         $newURL = config('app.MW_ROOT_URL') . '/' . config('app.MW_SANDBOX_PAGE') . '/' . $term;
-        $status = $mediawikiAPIService->addSection($pageTitle, $term, $wikiText);
 
+        $status = $mediawikiAPIService->editPage($pageTitle, $term, $newWikiText);
         // Display an error message if there's a failure
         if(!$status){
             return view('messages/error', compact('message'));

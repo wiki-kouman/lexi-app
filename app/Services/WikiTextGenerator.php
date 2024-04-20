@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
-class WikiTextGenerator {
+use function PHPUnit\Framework\isEmpty;
 
+class WikiTextGenerator {
+    private string $DEFAULT_LANGUAGE_CODE = 'fr';
+    private string $CONV_LANGUAGE_CODE = 'conv';
     public function wordToWikiText(string $label, string $translation, string $grammarCategory, string $langCode, array $exampleLabels, array $exampleTranslations): string {
         $categoryCode = $this->mapGrammarCategoryToTranslation($grammarCategory);
         $wikiText = "=== {{S|$categoryCode|$langCode}} ===" . "\r\n";
@@ -19,7 +22,7 @@ class WikiTextGenerator {
         return $wikiText;
     }
 
-    public function addNewLanguageSection(string $langCode): string {
+    public function languageToWikiText(string $langCode): string {
         $wikiText = "== {{langue|$langCode}} ==" . "\r\n";
         $wikiText .= "=== {{S|étymologie}} ===" . "\r\n";
         $wikiText .= ": {{ébauche-étym|$langCode}}" . "\r\n". "\r\n";
@@ -54,8 +57,7 @@ class WikiTextGenerator {
         };
     }
 
-    public function sentenceFormat(string $text): string
-    {
+    public function sentenceFormat(string $text): string {
         // Enforce capitalization of first character
         $text = $this->mb_ucfirst(trim($text));
 
@@ -68,5 +70,68 @@ class WikiTextGenerator {
 
     private function mb_ucfirst(string $str, ?string $encoding = null): string {
         return mb_strtoupper(mb_substr($str, 0, 1, $encoding), $encoding) . mb_substr($str, 1, null, $encoding);
+    }
+
+    /**
+     * Insert new language section next to its closest sibling
+     * If no closest sibling is found, add it at the top.
+     * @param WikiTextParser $parser
+     * @param string $langCode
+     * @param string $wikiText
+     * @return string
+     */
+    public function appendSection(WikiTextParser $parser, string $langCode, string $wikiText): string
+    {
+        $newWikiText = $parser->wikitext;
+        $closestLangCode = $this->getClosestLanguageCode($parser, $langCode);
+        $closestLangWikitext = $this->getClosestLanguageWikitext($closestLangCode, $newWikiText);
+
+        if( !empty($closestLangWikitext)) {
+            $regexPattern = "/^==?.*(langue)(?:(?!^\n?.*(langue))[\S\s])*$/m";
+            preg_match_all($regexPattern, $newWikiText, $matches);
+            $insertion_index = array_search($closestLangWikitext, $matches[0]);
+            $matches[0][$insertion_index] = $closestLangWikitext . "\r\n". "\r\n" . $wikiText;
+
+            // Join sections back into a single string
+            $newWikiText = implode("", $matches[0]);
+        } else {
+            // By default, append it at the end of the text
+            $newWikiText = $wikiText . "\r\n". "\r\n" . $newWikiText;
+        }
+
+        return $newWikiText;
+    }
+
+    public function getClosestLanguageCode(WikiTextParser $parser, string $newlangCode): string {
+
+        $sections = $parser->term->languagesAndCategories;
+        // Discard default language codes as they must remain at the top
+        unset($sections[$this->DEFAULT_LANGUAGE_CODE]);
+        unset($sections[$this->CONV_LANGUAGE_CODE]);
+        $sections = array_keys($sections);
+
+        // Add langCode to an array and sort it to find out where to append the wikitext
+        $closestLangCode = $this->DEFAULT_LANGUAGE_CODE;
+        $sections[] = $newlangCode;
+        sort($sections);
+        $currentIndex = array_search($newlangCode, $sections);
+
+
+        if ($currentIndex > 0 ){
+            $closestLangCode = $sections[$currentIndex -1];
+        }
+
+        return $closestLangCode;
+    }
+
+    private function getClosestLanguageWikitext(string $langCode, $wikiText): string
+    {
+        $regexPattern = "/^==?.*(langue\|$langCode)(?:(?!^\n?.*(langue))[\S\s])*$/m";
+        preg_match($regexPattern, $wikiText, $matches);
+
+        if (count($matches) > 0) {
+            return $matches[0];
+        }
+        return "";
     }
 }

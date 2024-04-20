@@ -9,7 +9,7 @@ class WikiTextParserTest extends TestCase
 {
     private WikiTextParser $parser;
     protected function setUp(): void{
-        $wikiText = file_get_contents('./sample/sampleWikiText.txt');
+        $wikiText = file_get_contents('./sample/sampleWikiTextRead.txt');
         $this->parser = new WikiTextParser('barra', $wikiText);
     }
     public function test_extract_term_should_contain_categories(): void

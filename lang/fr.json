@@ -49,5 +49,6 @@
     "An error occured while trying to login. Please try again.": "Une erreur s'est produite lors de la tentative de connexion. Veuillez réessayer.",
     "Please use the fields of the form below to add new definition and some examples for improving": "Veuillez utiliser les champs du formulaire ci-dessous pour ajouter une nouvelle définition et quelques exemples afin d'améliorer le mot",
     "This word does not contain any definition or examples yet. Please use the fields of the form below to create": "Ce mot ne contient pas encore de définition ni d’exemple. Merci d'utiliser les champs du formulaire ci-dessous pour créer le mot",
-    "The page was updated successfully.": "Vos modifications ont été enregistrées."
+    "The page was updated successfully.": "Vos modifications ont été enregistrées.",
+    "Sorry, it seems that the section you are trying to add already exists on the Wikitionary page.": "Désolé, il semble que la section que vous essayez d'ajouter existe déjà sur la page Wikitionnaire."
 }
