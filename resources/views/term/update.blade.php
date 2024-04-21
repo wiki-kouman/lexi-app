@@ -7,7 +7,7 @@
     </section>
 
     <section class="card spacious-card">
-        @include('forms/update-form')
+		@include('forms/add-form', ['operation' => "/wiki/update/$termId"])
     </section>
 
 </section>

@@ -70,7 +70,6 @@ class WikiController extends Controller {
 
 		$validator = Validator::make($request->all(), $validationRules);
         if($validator->fails()){
-			print_r($validator->messages());
             $message = $this->MESSAGE_EMPTY_FIELDS;
             return view('messages/error', compact('message'));
         }

@@ -65,14 +65,12 @@
 				<div class="invalid-feedback">{{__('Please make sure you have included a translation.')}}</div>
 			</div>
 		</div>
-        <input type="hidden" name="operation" value="/wiki/create"/>
+        <input type="hidden" name="operation" value="{{$operation}}"/>
     </div>
     <div class="actions form-group">
         <button type="button" class="btn btn-warning btn-sm btn-add"><i class="fa fa-plus"></i> {{__('Add')}}</button>
         <button type="button" class="btn btn-danger btn-sm btn-delete hidden"><i class="fa fa-trash"></i> {{__('Delete')}}</button>
         <button type="submit" class="btn btn-sm btn-primary align-right"><i class="fa fa-eye"></i>  {{__('Preview')}}</button>
     </div>
-
-
 </form>
 @include('keyboard')
