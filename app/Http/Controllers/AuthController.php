@@ -2,12 +2,12 @@
 
 	namespace App\Http\Controllers;
 
-    use App\OAuthClient\Exception;
-    use App\Services\MediawikiAPIService;
-    use App\Services\OAuthService;
-    use Illuminate\Http\RedirectResponse;
-    use Illuminate\Routing\Redirector;
-    use Illuminate\View\View;
+	use App\OAuthClient\Exception;
+	use App\Services\MediawikiAPIService;
+	use App\Services\OAuthService;
+	use Illuminate\Http\RedirectResponse;
+	use Illuminate\Routing\Redirector;
+	use Illuminate\View\View;
 
     class AuthController extends Controller
 	{
@@ -27,7 +27,8 @@
         public function login(): View | RedirectResponse{
             // Configure the OAuth client with the URL and consumer details.
             $client = OAuthService::getClient();
-            list( $oauthUrl, $token ) = $client->initiate();
+			$this->clearSessionInputs();
+			list( $oauthUrl, $token ) = $client->initiate();
             OAuthService::addRequestTokenToSession($token);
 
             return redirect($oauthUrl);
@@ -71,6 +72,7 @@
 
         public function logout (): RedirectResponse|Redirector {
             OAuthService::clearSession();
+			$this->clearSessionInputs();
             return redirect('/');
         }
 

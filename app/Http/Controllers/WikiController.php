@@ -61,14 +61,14 @@ class WikiController extends Controller {
 
     public function preview (Request $request): View {
         $validationRules = [
-            'operation'                 => 'required',
-            'definitionLabel'           => 'required|alpha',
-            'definitionTranslation'     => 'required|min:3',
-            'category'                  => 'required|alpha',
-            'language'                  => 'required|alpha',
+			'operation'                 => 'required',
+			'definitionLabel'           => 'required|alpha',
+			'definitionTranslation'     => 'required|min:3',
+			'category'                  => 'required|alpha',
+			'language'                  => 'required|alpha',
 			'exampleTranslation'        => 'nullable|array',
-			'exampleLabel'              => ["nullable","array"],
-			'exampleLabel.*'            => "regex:/'''.*'''/"
+			'exampleLabel'              => 'nullable|array',
+			'exampleLabel.*'            => "nullable|regex:/'''.*'''/"
         ];
 
 		$validator = Validator::make($request->all(), $validationRules);

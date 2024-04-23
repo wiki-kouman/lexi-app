@@ -65,7 +65,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text source-label" id="exampleLabel">{{__('Example text')}}</span>
 				</div>
-				<input type="text" class="form-control keyboard-input" pattern=".*('''.*''').*" value="{{session('exampleLabel')[0] ?? '', ''}}" name="exampleLabel[]" required>
+				<input type="text" class="form-control keyboard-input" pattern=".*('''.*''').*" value="{{session('exampleLabel')[0] ?? '', ''}}" name="exampleLabel[]">
 				<button type="button" class="btn btn-dark keyboard-button"><i class="fa fa-keyboard-o"></i></button>
 				<div class="invalid-feedback">{{__('It seems that your example does not include a word in bold.')}}</div>
 			</div>
@@ -73,7 +73,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="exampleTranslation">{{__('French')}}</span>
 				</div>
-				<input type="text" class="form-control" value="{{session('exampleTranslation')[0] ?? '', ''}}" name="exampleTranslation[]" required>
+				<input type="text" class="form-control" value="{{session('exampleTranslation')[0] ?? '', ''}}" name="exampleTranslation[]">
 				<div class="invalid-feedback">{{__('Please make sure you have included a translation.')}}</div>
 			</div>
 		</div>
