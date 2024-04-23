@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\TermDTO;
 use App\Services\OAuthService;
 use App\Services\SessionService;
 use App\Services\WikiTextGenerator;
@@ -77,35 +78,28 @@ class WikiController extends Controller {
             return view('messages/error', compact('message'));
         }
 
-        $operation = $request->get('operation');
-        $label = $request->get('definitionLabel');
-        $translation = $request->get('definitionTranslation');
-        $grammarCategory = $request->get('category');
-        $langCode = $request->get('language');
-        $exampleLabels = $request->get('exampleLabel');
-        $exampleTranslations = $request->get('exampleTranslation');
+        $operation = $request->get('category');
+
+		$term = new TermDTO(
+			category: $request->get('category'),
+			language: $request->get('language'),
+			label: $request->get('definitionLabel'),
+			labelTranslation: $request->get('definitionTranslation'),
+			exampleLabels: $request->get('exampleLabel'),
+			exampleTranslations: $request->get('exampleTranslation')
+		);
 
 		// Store user input in cache
 		SessionService::set(self::$SUPPORTED_FIELDS, $request);
 
-        $wikiTextGenerator = (new WikiTextGenerator);
-        $wikiText = $wikiTextGenerator->wordToWikiText(
-            $label,
-            $translation,
-            $grammarCategory,
-            $langCode,
-            $exampleLabels,
-            $exampleTranslations
-        );
-
-        $wikiText = $wikiTextGenerator->languageToWikiText($langCode) . $wikiText;
+        $wikiText = WikiTextGenerator::generate($term);
         $htmlText = MediawikiAPIService::previewWikiText($wikiText);
 
         return view('term/preview',
             compact(
                 'htmlText',
                 'wikiText',
-                'label',
+                'term',
                 'operation'
             )
         );

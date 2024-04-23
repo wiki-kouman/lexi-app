@@ -2,22 +2,31 @@
 
 namespace App\Services;
 
+use App\DTO\TermDTO;
 use function PHPUnit\Framework\isEmpty;
 
 class WikiTextGenerator {
 	private string $LANG_CODE = 'fr';
 	private string $CONV_LANGUAGE_CODE = 'conv';
-	public function wordToWikiText(string $label, string $translation, string $grammarCategory, string $langCode, array $exampleLabels, array $exampleTranslations): string {
-		$categoryCode = $this->mapGrammarCategoryToTranslation($grammarCategory);
-		$wikiText = "=== {{S|$categoryCode|$langCode}} ===" . "\r\n";
-		$wikiText .= "'''$label''' {{pron||$langCode}}" . "\r\n";
-		$wikiText .= "# ". $this->sentenceFormat($translation) . "\r\n";
 
-		if(count($exampleLabels) > 0 && $exampleLabels[0] != null){
-			for ($i = 0; $i < count($exampleLabels); $i++) {
-				$examplelabel = $this->sentenceFormat($exampleLabels[$i]);
-				$exampleTranslation = $this->sentenceFormat($exampleTranslations[$i]);
-				$wikiText .= "#* {{exemple |$examplelabel |sens=$exampleTranslation |lang=$langCode}}" . "\r\n";
+	public static function generate(TermDTO $term): string
+	{
+		$generator = new self;
+		$wikiText = $generator->wordToWikiText($term);
+		return $generator->languageToWikiText($term->language) . $wikiText;
+	}
+
+	public function wordToWikiText(TermDTO $term): string {
+		$categoryCode = $this->mapGrammarCategoryToTranslation($term->category);
+		$wikiText = "=== {{S|$categoryCode|$term->language}} ===" . "\r\n";
+		$wikiText .= "'''$term->label''' {{pron||$term->language}}" . "\r\n";
+		$wikiText .= "# ". $this->sentenceFormat($term->labelTranslation) . "\r\n";
+
+		if(count($term->exampleLabels) > 0 && $term->exampleLabels[0] != null){
+			for ($i = 0; $i < count($term->exampleLabels); $i++) {
+				$examplelabel = $this->sentenceFormat($term->exampleLabels[$i]);
+				$exampleTranslation = $this->sentenceFormat($term->exampleTranslations[$i]);
+				$wikiText .= "#* {{exemple |$examplelabel |sens=$exampleTranslation |lang=$term->language}}" . "\r\n";
 			}
 		}
 
