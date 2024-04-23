@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Services\OAuthService;
+use App\Services\SessionService;
 use App\Services\WikiTextGenerator;
 use App\Services\WikiTextParser;
 use App\Services\MediawikiAPIService;
-use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
@@ -18,11 +18,14 @@ class WikiController extends Controller {
     private string $MESSAGE_DUPLICATE_SECTION = 'Sorry, it seems that the section you are trying to add already exists on the Wikitionary page.';
 
     public function search(Request $request): View {
-        $validator = Validator::make(
+		$validator = Validator::make(
             $request->all(), [ 'term' => 'required|alpha' ]
         );
 
-        if($validator->fails()){
+		// Store user input in cache
+		SessionService::set(['term'], $request);
+
+		if($validator->fails()){
             $message = $this->MESSAGE_ERROR;
             return view('messages/error', compact('message'));
         }
@@ -65,7 +68,7 @@ class WikiController extends Controller {
             'language'                  => 'required|alpha',
 			'exampleTranslation'        => 'nullable|array',
 			'exampleLabel'              => ["nullable","array"],
-			'exampleLabel.*'              => "regex:/'''.*'''/"
+			'exampleLabel.*'            => "regex:/'''.*'''/"
         ];
 
 		$validator = Validator::make($request->all(), $validationRules);
@@ -81,6 +84,9 @@ class WikiController extends Controller {
         $langCode = $request->get('language');
         $exampleLabels = $request->get('exampleLabel');
         $exampleTranslations = $request->get('exampleTranslation');
+
+		// Store user input in cache
+		SessionService::set(self::$SUPPORTED_FIELDS, $request);
 
         $wikiTextGenerator = (new WikiTextGenerator);
         $wikiText = $wikiTextGenerator->wordToWikiText(
@@ -131,9 +137,11 @@ class WikiController extends Controller {
             return view('messages/error', compact('message'));
         }
 
-        $message = $this->MESSAGE_SUCCESS;
-        return view('messages/success', compact('message', 'newURL'));
-    }
+        // Clear cached user input
+		$this->clearSessionInputs();
+		$message = $this->MESSAGE_SUCCESS;
+		return view('messages/success', compact('message', 'newURL'));
+	}
 
     public function update(Request $request, int $termId): View {
         $message = $this->MESSAGE_ERROR;
@@ -184,7 +192,8 @@ class WikiController extends Controller {
             return view('messages/error', compact('message'));
         }
 
-        $message = $this->MESSAGE_SUCCESS;
+		$this->clearSessionInputs();
+		$message = $this->MESSAGE_SUCCESS;
         return view('messages/success', compact('message', 'newURL'));
     }
 }

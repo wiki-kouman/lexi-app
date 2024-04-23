@@ -6,9 +6,15 @@
             <label for="language">{{__('Language')}}</label>
             <select id="language" class="custom-select mr-sm-2" name="language" required>
                 <option value="">{{__('Choose language')}}...</option>
-                <option value="adj">Adioukrou</option>
-                <option value="any">Agni</option>
-                <option value="bci">Baoulé</option>
+				@foreach (
+					[
+						(object) ['code' => 'adj', 'name' => 'Adioukrou'],
+						(object) ['code' => 'any', 'name' => 'Agni'],
+						(object) ['code' => 'bci', 'name' => 'Baoulé'],
+					] as $language
+				)
+					<option value="{{ $language->code }}" {{ ( $language->code == session('language') ) ? 'selected' : '' }}> {{ $language->name }} </option>
+				@endforeach
             </select>
 			<div class="invalid-feedback">{{__('You need to choose a language from the list.')}}</div>
         </div>
@@ -16,12 +22,18 @@
             <label for="category">{{__('Grammar category')}}</label>
             <select id="category" class="custom-select mr-sm-2"  name="category" required>
                 <option value="">{{__('Choose category')}}...</option>
-                <option value="noun">{{__('Noun')}}</option>
-                <option value="pronoun">{{__('Pronoun')}}</option>
-                <option value="adv">{{__('Adverb')}}</option>
-                <option value="adj">{{__('Adjective')}}</option>
-                <option value="verb">{{__('Verbe')}}</option>
-                <option value="interj">{{__('Interjection')}}</option>
+				@foreach (
+					[
+						(object) ['code' => 'noun', 'name' => 'Noun'],
+						(object) ['code' => 'pronoun', 'name' => 'Pronoun'],
+						(object) ['code' => 'adv', 'name' => 'Adverb'],
+						(object) ['code' => 'adj', 'name' => 'Adjective'],
+						(object) ['code' => 'verb', 'name' => 'Verbe'],
+						(object) ['code' => 'interj', 'name' => 'Interjection'],
+					] as $category
+				)
+				<option value="{{ $category->code }}" {{ ( $category->code == session('category') ) ? 'selected' : '' }}> {{ __($category->name) }} </option>
+				@endforeach
             </select>
 			<div class="invalid-feedback">{{__('You need to choose a grammar category.')}}</div>
         </div>
@@ -41,7 +53,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">{{__('French')}}</span>
             </div>
-            <input type="text" class="form-control" name="definitionTranslation" required>
+            <input type="text" class="form-control" name="definitionTranslation" value="{{session('definitionTranslation'), ''}}" required>
 			<div class="invalid-feedback">{{__('Please make sure you have included a translation.')}}</div>
         </div>
     </div>
@@ -53,7 +65,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text source-label" id="exampleLabel">{{__('Example text')}}</span>
 				</div>
-				<input type="text" class="form-control keyboard-input" pattern=".*('''.*''').*" name="exampleLabel[]" required>
+				<input type="text" class="form-control keyboard-input" pattern=".*('''.*''').*" value="{{session('exampleLabel')[0] ?? '', ''}}" name="exampleLabel[]" required>
 				<button type="button" class="btn btn-dark keyboard-button"><i class="fa fa-keyboard-o"></i></button>
 				<div class="invalid-feedback">{{__('It seems that your example does not include a word in bold.')}}</div>
 			</div>
@@ -61,7 +73,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="exampleTranslation">{{__('French')}}</span>
 				</div>
-				<input type="text" class="form-control" name="exampleTranslation[]" required>
+				<input type="text" class="form-control" value="{{session('exampleTranslation')[0] ?? '', ''}}" name="exampleTranslation[]" required>
 				<div class="invalid-feedback">{{__('Please make sure you have included a translation.')}}</div>
 			</div>
 		</div>
