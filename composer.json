@@ -33,11 +33,7 @@
         }
     },
     "scripts": {
-        "artisan:productionize" : [
-            "php artisan optimize",
-            "php artisan optimize:clear",
-            "php artisan config:cache"
-        ],
+        "start" : ["php artisan serve"],
         "test" : ["php ./vendor/phpunit/phpunit/phpunit ./tests"],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

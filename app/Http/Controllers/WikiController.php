@@ -78,7 +78,7 @@ class WikiController extends Controller {
             return view('messages/error', compact('message'));
         }
 
-        $operation = $request->get('category');
+        $operation = $request->get('operation');
 
 		$term = new TermDTO(
 			category: $request->get('category'),

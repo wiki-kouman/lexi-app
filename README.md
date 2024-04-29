@@ -19,7 +19,7 @@ Copy `.env.example` to `.env` and change the parameters according to your OAuth 
 
 ## Quickstart the app
 ```bash
-php artisan serve
+composer start
 ```
 
 ## Unit testing

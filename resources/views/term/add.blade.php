@@ -6,7 +6,7 @@
         <p class="tou-description">{{__('This word does not contain any definition or examples yet. Please use the fields of the form below to create')}} <strong>{{$term}}</strong>.</p>
     </section>
     <section class="card spacious-card">
-            @include('forms/add-form', ['operation' => '/wiki/add'])
+		@include('forms/add-form', ['operation' => '/wiki/add'])
     </section>
 
 </section>
