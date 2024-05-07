@@ -100,7 +100,7 @@ class MediawikiAPIService
                 'text' => $wikiText,
                 'token' => $editToken,
                 'summary' => '+' . $term  . ' | ' . config('app.MW_SANDBOX_COMMENT'),
-				'nocreate' => str(config('app.env')) === 'production',
+				// 'nocreate' => str(config('app.env')) === 'production',
                 'format' => 'json',
             ];
 
