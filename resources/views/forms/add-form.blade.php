@@ -27,6 +27,7 @@
 						(object) ['code' => 'noun', 'name' => 'Noun'],
 						(object) ['code' => 'pronoun', 'name' => 'Pronoun'],
 						(object) ['code' => 'adv', 'name' => 'Adverb'],
+						(object) ['code' => 'numeral', 'name' => 'Numeral'],
 						(object) ['code' => 'adj', 'name' => 'Adjective'],
 						(object) ['code' => 'verb', 'name' => 'Verbe'],
 						(object) ['code' => 'interj', 'name' => 'Interjection'],

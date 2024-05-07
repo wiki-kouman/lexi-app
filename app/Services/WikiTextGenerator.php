@@ -59,9 +59,10 @@ class WikiTextGenerator {
 	public function mapGrammarCategoryToTranslation(string $grammarCategory): string {
 		return match($grammarCategory)  {
 			'noun' => "nom",
-			'pronoun' => "prénom",
+			'pronoun' => "pronom",
 			'verb' => "verbe",
 			'adj' => "adjectif",
+			'numeral' => "adjectif numéral",
 			'adv' => "adverbe",
 			'interj' => "interjection",
 			'default' => $grammarCategory,
