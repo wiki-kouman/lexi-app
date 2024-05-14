@@ -17,7 +17,7 @@ return [
     'MW_OAUTH_SECRET' => env('MW_OAUTH_SECRET'),
     'MW_USER_AGENT' => env('MW_USER_AGENT'),
     'MW_SANDBOX_PAGE' => env('MW_SANDBOX_PAGE'),
-    'MW_SANDBOX_COMMENT' => env('MW_SANDBOX_COMMENT'),
+    'MW_COMMENT' => env('MW_COMMENT'),
 
     'debug' => (bool) env('APP_DEBUG', false),
     'url' => env('APP_URL', 'http://localhost'),

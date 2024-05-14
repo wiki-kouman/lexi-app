@@ -48,7 +48,7 @@ class MediawikiAPIService
                 'title' => $pageTitle,
                 'createonly' => true,
                 'bot' => true,
-                'summary' => '+' . $term  . ' | ' . config('app.MW_SANDBOX_COMMENT'),
+                'summary' => '+' . $term  . ' | ' . config('app.MW_COMMENT'),
                 'text' => $wikiText,
                 'token' => $editToken,
                 'format' => 'json',
@@ -72,7 +72,7 @@ class MediawikiAPIService
             $apiParams = [
                 'action' => 'edit',
                 'title' => $pageTitle,
-                'summary' => '+' . $term  . ' | ' . config('app.MW_SANDBOX_COMMENT'),
+                'summary' => '+' . $term  . ' | ' . config('app.MW_COMMENT'),
                 'appendtext' => "\r\n". "\r\n" . $wikiText,
                 'token' => $editToken,
                 'bot' => true,
@@ -99,7 +99,7 @@ class MediawikiAPIService
                 'title' => $pageTitle,
                 'text' => $wikiText,
                 'token' => $editToken,
-                'summary' => '+' . $term  . ' | ' . config('app.MW_SANDBOX_COMMENT'),
+                'summary' => '+' . $term  . ' | ' . config('app.MW_COMMENT'),
 				// 'nocreate' => str(config('app.env')) === 'production',
                 'format' => 'json',
             ];

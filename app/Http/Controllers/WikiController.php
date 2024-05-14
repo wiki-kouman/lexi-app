@@ -17,6 +17,8 @@ class WikiController extends Controller {
     private string $MESSAGE_ERROR = 'The change you requested has failed. Please try again.';
     private string $MESSAGE_EMPTY_FIELDS = 'Sorry, it seems some information was not provided. Please make sure you provided details such as category, language and examples.';
     private string $MESSAGE_DUPLICATE_SECTION = 'Sorry, it seems that the section you are trying to add already exists on the Wikitionary page.';
+	public string $ENV_TEST = 'local';
+	public string $ENV_PROD = 'production';
 
     public function search(Request $request): View {
 		$validator = Validator::make(
@@ -122,9 +124,10 @@ class WikiController extends Controller {
             OAuthService::getClient(),
             OAuthService::getAccessToken()
         );
-        $pageTitle = config('app.MW_SANDBOX_PAGE') . '/' . $term;
-        $newURL = config('app.MW_ROOT_URL') . '/' . config('app.MW_SANDBOX_PAGE') . '/' . $term;
-        $status = $mediawikiAPIService->createPage($term, $pageTitle, $wikiText);
+
+		list($pageTitle, $newURL) = $this->getTitleAndNewURL($term);
+
+		$status = $mediawikiAPIService->createPage($term, $pageTitle, $wikiText);
 
         // Display an error message if there's a failure
         if(!$status){
@@ -171,11 +174,10 @@ class WikiController extends Controller {
 
         // Prepare newer version of the page
         $newWikiText = $generator->appendSection($parser, $newLangCode, $newWikiText);
-        $pageTitle = config('app.MW_SANDBOX_PAGE') . '/' . $term;
-        $newURL = config('app.MW_ROOT_URL') . '/' . config('app.MW_SANDBOX_PAGE') . '/' . $term;
+		list($pageTitle, $newURL) = $this->getTitleAndNewURL($term);
 
 
-        if( preg_match("{{langue\|$newLangCode}}", $parser->wikitext)) {
+		if( preg_match("{{langue\|$newLangCode}}", $parser->wikitext)) {
             $message = $this->MESSAGE_DUPLICATE_SECTION;
             return view('messages/error', compact('message'));
         }
@@ -190,4 +192,18 @@ class WikiController extends Controller {
 		$message = $this->MESSAGE_SUCCESS;
         return view('messages/success', compact('message', 'newURL'));
     }
+
+	/**
+	 * @param mixed $term
+	 * @return string[]
+	 */
+	public function getTitleAndNewURL(mixed $term): array
+	{
+		$pageTitle = config('env') === $this->ENV_PROD ? '' : config('app.MW_SANDBOX_PAGE') . '/';
+		$pageTitle .= $term;
+		$newURL = config('app.MW_ROOT_URL') . '/';
+		$newURL .= config('env') === $this->ENV_PROD ? '' : config('app.MW_SANDBOX_PAGE') . '/';
+		$newURL .= $term;
+		return array($pageTitle, $newURL);
+	}
 }

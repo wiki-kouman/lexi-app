@@ -2,10 +2,11 @@
 
 namespace Tests\Controllers;
 
+use App\Http\Controllers\WikiController;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\VerifyCsrfToken;
 use Tests\TestCase;
-
+use Illuminate\Support\Facades\Config;
 
 class WikiControllerTest extends TestCase
 {
@@ -62,6 +63,18 @@ class WikiControllerTest extends TestCase
         )->assertViewIs('messages.error');
     }
 
+	public function testGetTitleAndNewURLShouldReturnSandboxedURLWhenEnvIsLocal(): void{
+		$controller = new WikiController;
+
+		Config::set('env', $controller->ENV_TEST);
+		list($pageTitle) = $controller->getTitleAndNewURL('Test');
+		$this->assertSame( config('app.MW_SANDBOX_PAGE') . '/Test', $pageTitle);
+
+		Config::set('env', $controller->ENV_PROD);
+		list($pageTitle) = $controller->getTitleAndNewURL('Test');
+		$this->assertSame( 'Test', $pageTitle);
+
+	}
     private function getMockPayload() : array {
         return [
             'category'                  => 'adv',
