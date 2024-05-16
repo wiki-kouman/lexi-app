@@ -9,11 +9,21 @@ use App\OAuthClient\Token;
 class MediawikiAPIService
 {
     private string $API_URL;
-    public function __construct(private readonly Client $client, private readonly Token $accessToken )
+    private static MediawikiAPIService $instance;
+	public function __construct(private readonly Client $client, private readonly Token $accessToken )
     {
         $this->API_URL = config('app.MW_API_URL');
     }
 
+	public static function getInstance(): MediawikiAPIService{
+		if (!isset(self::$instance)) {
+			self::$instance = new static(
+				OAuthService::getClient(),
+				OAuthService::getAccessToken());
+		}
+
+		return self::$instance;
+	}
     /**
      */
     public static function findByTerm(string $term) {
@@ -66,14 +76,14 @@ class MediawikiAPIService
     }
 
 
-    public function addSection(string $pageTitle, string $term, string $wikiText): bool {
+    public function addSignature(string $pageTitle, object $user, string $wikiText): bool {
         try {
             $editToken = $this->getEditToken();
             $apiParams = [
                 'action' => 'edit',
                 'title' => $pageTitle,
-                'summary' => '+' . $term  . ' | ' . config('app.MW_COMMENT'),
-                'appendtext' => "\r\n". "\r\n" . $wikiText,
+                'summary' => '+signature ' . $user->name  . ' | ' . config('app.MW_COMMENT'),
+                'appendtext' => "\r\n" . $wikiText,
                 'token' => $editToken,
                 'bot' => true,
                 'format' => 'json',

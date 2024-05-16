@@ -17,6 +17,7 @@ return [
     'MW_OAUTH_SECRET' => env('MW_OAUTH_SECRET'),
     'MW_USER_AGENT' => env('MW_USER_AGENT'),
     'MW_SANDBOX_PAGE' => env('MW_SANDBOX_PAGE'),
+    'MW_SIGNATURE_PAGE' => env('MW_SIGNATURE_PAGE'),
     'MW_COMMENT' => env('MW_COMMENT'),
 
     'debug' => (bool) env('APP_DEBUG', false),

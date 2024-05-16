@@ -56,5 +56,8 @@
 	"You need to choose a grammar category.": "Vous devez choisir une catégorie grammaticale.",
 	"This field is required, but it seems empty.": "Ce champ est requis, mais il semble vide.",
 	"Please make sure you have included a translation.": "Veuillez vous assurer d'avoir inclus une traduction.",
-	"It seems that your example does not include a word in bold.": "Il semble que votre exemple ne contient pas de mot en gras."
+	"It seems that your example does not include a word in bold.": "Il semble que votre exemple ne contient pas de mot en gras.",
+	"On-wiki signature": "Signer sur wiki",
+	"Your signature was added successfully to Wikitonary.": "Votre signature a été ajoutée au Wiktionaire avec succès.",
+	"Do confirm that you want to sign on Wikitionary?": "Voulez-vous vraiment signer sur le Wiktionaire?"
 }
