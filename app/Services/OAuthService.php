@@ -57,21 +57,43 @@ class OAuthService
     }
 
     public static function addRequestTokenToSession(Token $token): void
+	{
+		if (!isset($_SESSION)) {
+			session_start();
+		}
+		$_SESSION['request_key'] = $token->key;
+		$_SESSION['request_secret'] = $token->secret;
+	}
+
+	public static function addUserInfoToCache(object $user): void
     {
         if(!isset($_SESSION)) {
             session_start();
         }
-        $_SESSION['request_key'] = $token->key;
-        $_SESSION['request_secret'] = $token->secret;
+        $_SESSION['user'] = $user;
     }
 
-    public static function clearSession(): void
+	public static function getCachedUserInfo(): object|null
+	{
+		if(!isset($_SESSION)) {
+			session_start();
+		}
+
+		if(array_key_exists('user', $_SESSION)){
+			return $_SESSION['user'];
+		}
+
+		return null;
+	}
+
+	public static function clearSession(): void
     {
         if(!isset($_SESSION)) {
             session_start();
         }
-        session_destroy();
-    }
+		session_unset();
+		session_destroy();
+	}
 
     public static function isLoggedIn(): bool
     {

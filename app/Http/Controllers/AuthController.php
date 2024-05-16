@@ -61,13 +61,13 @@
          * @throws Exception
          */
         public function loggedIn(): View {
-            $client = OAuthService::getClient();
-            $accessToken = OAuthService::getAccessToken();
+			$client = OAuthService::getClient();
+			$accessToken = OAuthService::getAccessToken();
 
-            $mediawikiAPIService = new MediawikiAPIService($client, $accessToken);
-            $user = $mediawikiAPIService->getUserInfo();
-            $user = $user->query->userinfo;
-            return view('/home/logged-in', compact('user'));
+			$mediawikiAPIService = new MediawikiAPIService($client, $accessToken);
+			$user = $mediawikiAPIService->getUserInfo();
+
+			return view('/home/logged-in', compact('user'));
         }
 
         public function logout (): RedirectResponse|Redirector {

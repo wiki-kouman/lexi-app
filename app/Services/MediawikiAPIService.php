@@ -138,11 +138,22 @@ class MediawikiAPIService
      */
     public function getUserInfo()
     {
-        $apiURL = config('app.MW_API_URL');
-        return json_decode( $this->client->makeOAuthCall(
-            $this->accessToken,
-            "$apiURL?action=query&meta=userinfo&uiprop=rights&format=json"
-        ) );
+		// Fetch from cache first
+		$user = OAuthService::getCachedUserInfo();
+		if($user != null){
+			return $user;
+		}
+
+		$apiURL = config('app.MW_API_URL');
+		$response = json_decode( $this->client->makeOAuthCall(
+			$this->accessToken,
+			"$apiURL?action=query&meta=userinfo&uiprop=rights&format=json"
+		));
+		$user = $response->query->userinfo;
+
+		// Add to cache
+		OAuthService::addUserInfoToCache($user);
+		return $user;
     }
 
     /**
