@@ -36,7 +36,7 @@ class WikiController extends Controller {
 
         $term = $request->get('term');
         $results = MediawikiAPIService::findByTerm($term);
-        $isExistent = MediawikiAPIService::isExistent($term);
+        $isExistent = MediawikiAPIService::isPageExistent($term);
 
         return view('term/results', compact('term', 'results', 'isExistent'));
     }

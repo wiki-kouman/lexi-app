@@ -5,6 +5,8 @@ namespace App\Services;
 use App\OAuthClient\Client;
 use App\OAuthClient\Exception;
 use App\OAuthClient\Token;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
 
 class MediawikiAPIService
 {
@@ -69,7 +71,7 @@ class MediawikiAPIService
                 return true;
             }
         } catch (Exception $e){
-            // TODO: Do something with the error, log it etc.
+			Log::error($e->getMessage());
         }
 
         return false;
@@ -95,7 +97,7 @@ class MediawikiAPIService
                 return true;
             }
         } catch (Exception $e){
-            // TODO: Do something with the error, log it etc.
+			Log::error($e->getMessage());
         }
 
         return false;
@@ -120,7 +122,7 @@ class MediawikiAPIService
                 return true;
             }
         } catch (Exception $e){
-            // TODO: Do something with the error, log it etc.
+			Log::error($e->getMessage());
         }
         return false;
     }
@@ -137,7 +139,7 @@ class MediawikiAPIService
 
     private static function makeGetRequest(array $params): bool|string
     {
-        $urlRequest = config('app.MW_API_URL') . '?';
+        $urlRequest = Config::get('app.MW_API_URL') . '?';
         $urlRequest .= http_build_query($params);
 
         return file_get_contents($urlRequest);
@@ -146,8 +148,7 @@ class MediawikiAPIService
     /**
      * @throws Exception
      */
-    public function getUserInfo()
-    {
+    public function getUserInfo() {
 		// Fetch from cache first
 		$user = OAuthService::getCachedUserInfo();
 		if($user != null){
@@ -178,7 +179,7 @@ class MediawikiAPIService
         );
     }
 
-    public static function isExistent(string $term): bool {
+    public static function isPageExistent(string $term): bool {
         $apiParams = [
             'action' => 'query',
             'titles' => $term,
@@ -203,4 +204,25 @@ class MediawikiAPIService
         ];
 
         return json_decode(self::makeGetRequest($apiParams))->parse->text->{"*"};
-    }}
+    }
+
+	public static function getPageLastSection( string $page ): string {
+		try{
+			$apiParams = [
+				'action' => 'parse',
+				'prop' => 'wikitext',
+				'page' => $page,
+				'format' => 'json',
+			];
+			$wikiText = json_decode(self::makeGetRequest($apiParams))->parse->wikitext->{"*"};
+
+			if(!preg_match_all('/==+.*?==+(?:\n(?!==).*)*/', $wikiText, $matches)){
+				throw new Exception('No sections on the page.');
+			}
+			return $matches[0][count($matches[0]) -1];
+		} catch ( Exception $e ) {
+			Log::error($e->getMessage());
+			return "";
+		}
+	}
+}
