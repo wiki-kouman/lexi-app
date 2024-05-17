@@ -66,11 +66,11 @@ class WikiControllerTest extends TestCase
 	public function testGetTitleAndNewURLShouldReturnSandboxedURLWhenEnvIsLocal(): void{
 		$controller = new WikiController;
 
-		Config::set('env', $controller->ENV_TEST);
+		Config::set('app.env', $controller->ENV_TEST);
 		list($pageTitle) = $controller->getTitleAndNewURL('Test');
 		$this->assertSame( config('app.MW_SANDBOX_PAGE') . '/Test', $pageTitle);
 
-		Config::set('env', $controller->ENV_PROD);
+		Config::set('app.env', $controller->ENV_PROD);
 		list($pageTitle) = $controller->getTitleAndNewURL('Test');
 		$this->assertSame( 'Test', $pageTitle);
 

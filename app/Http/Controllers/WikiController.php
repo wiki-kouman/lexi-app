@@ -199,10 +199,10 @@ class WikiController extends Controller {
 	 */
 	public function getTitleAndNewURL(mixed $term): array
 	{
-		$pageTitle = config('env') === $this->ENV_PROD ? '' : config('app.MW_SANDBOX_PAGE') . '/';
+		$pageTitle = config('app.env') === $this->ENV_PROD ? '' : config('app.MW_SANDBOX_PAGE') . '/';
 		$pageTitle .= $term;
 		$newURL = config('app.MW_ROOT_URL') . '/';
-		$newURL .= config('env') === $this->ENV_PROD ? '' : config('app.MW_SANDBOX_PAGE') . '/';
+		$newURL .= config('app.env') === $this->ENV_PROD ? '' : config('app.MW_SANDBOX_PAGE') . '/';
 		$newURL .= $term;
 		return array($pageTitle, $newURL);
 	}

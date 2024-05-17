@@ -67,10 +67,11 @@ class MediawikiAPIService
             ];
 
             $result = json_decode($this->commitChange($apiParams));
-            if(!property_exists($result , "error")){
-                return true;
+            if(property_exists($result , "error")){
+                throw new Exception(json_encode($result->error));
             }
-        } catch (Exception $e){
+        	return true;
+		} catch (Exception $e){
 			Log::error($e->getMessage());
         }
 
@@ -118,10 +119,11 @@ class MediawikiAPIService
 
             $result = json_decode($this->commitChange($apiParams));
 
-            if(!property_exists($result , "error")){
-                return true;
-            }
-        } catch (Exception $e){
+			if(property_exists($result , "error")){
+				throw new Exception(json_encode($result->error));
+			}
+        	return true;
+		} catch (Exception $e){
 			Log::error($e->getMessage());
         }
         return false;

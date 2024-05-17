@@ -21,7 +21,6 @@ class Controller extends BaseController
 
 	use AuthorizesRequests, ValidatesRequests;
 	protected function clearSessionInputs(): void {
-
 		SessionService::remove(self::$SUPPORTED_FIELDS);
 	}
 }
