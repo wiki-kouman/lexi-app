@@ -106,10 +106,10 @@ class WikiTextGenerator {
 			$newWikiText = preg_replace($regexPattern, $replacement, $newWikiText, 1);
 
 		} else if(preg_match("{{langue\|$this->LANG_CODE}}", $parser->wikitext)) {
-			$newWikiText = $parser->wikitext . "\r\n\r\n" . $addedWikitext;
+			$newWikiText = $parser->wikitext . "\r\n" . $addedWikitext . "\r\n";
 		} else {
 			// By default, append it to the top of the text
-			$newWikiText = $addedWikitext . "\r\n\r\n". $parser->wikitext;
+			$newWikiText = $addedWikitext . "\r\n". $parser->wikitext;
 		}
 
 		return $newWikiText;
