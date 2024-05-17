@@ -30,13 +30,13 @@ class WikiTextGenerator {
 			}
 		}
 
-		return $wikiText;
+		return $wikiText . "\r\n";
 	}
 
 	public function languageToWikiText(string $langCode): string {
 		$wikiText = "== {{langue|$langCode}} ==" . "\r\n";
 		$wikiText .= "=== {{S|étymologie}} ===" . "\r\n";
-		$wikiText .= ": {{ébauche-étym|$langCode}}" . "\r\n". "\r\n";
+		$wikiText .= ": {{ébauche-étym|$langCode}}" . "\r\n" . "\r\n";
 		return $wikiText;
 	}
 
@@ -102,7 +102,7 @@ class WikiTextGenerator {
 			$regexPattern = "/(^==?.*(langue\|$closestLangCode)(?:(?!^==?.*(langue))[\S\s])*)/m";
 
 			// Define the replacement string with the new language section
-			$replacement = "$1\n\n$addedWikitext";
+			$replacement = "$1\r\n$addedWikitext\r\n";
 			$newWikiText = preg_replace($regexPattern, $replacement, $newWikiText, 1);
 
 		} else if(preg_match("{{langue\|$this->LANG_CODE}}", $parser->wikitext)) {
