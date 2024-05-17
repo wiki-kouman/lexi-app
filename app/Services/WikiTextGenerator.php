@@ -109,7 +109,7 @@ class WikiTextGenerator {
 			$newWikiText = $parser->wikitext . "\r\n" . $addedWikitext . "\r\n";
 		} else {
 			// By default, append it to the top of the text
-			$newWikiText = $addedWikitext . "\r\n". $parser->wikitext;
+			$newWikiText = $addedWikitext . "\r\n" . $parser->wikitext;
 		}
 
 		return $newWikiText;
