@@ -34,6 +34,7 @@
     },
     "scripts": {
         "start" : ["php artisan serve"],
+        "logs" : ["tail -f storage/logs/laravel.log"],
 		"artisan:productionize" : [
 			"php artisan optimize",
 			"php artisan optimize:clear",

@@ -27,3 +27,9 @@ Do some testing by running the following command
 ```bash
 composer test
 ```
+
+## Logs
+Take a look at the logs with
+```bash
+composer logs
+```
