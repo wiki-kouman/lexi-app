@@ -92,11 +92,11 @@ class MediawikiAPIService
                 'format' => 'json',
             ];
 
-            $result = json_decode($this->commitChange($apiParams));
-
-            if(!property_exists($result , "error")){
-                return true;
-            }
+			$result = json_decode($this->commitChange($apiParams));
+			if(property_exists($result , "error")){
+				throw new Exception(json_encode($result->error));
+			}
+			return true;
         } catch (Exception $e){
 			Log::error($e->getMessage());
         }

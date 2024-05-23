@@ -9,6 +9,7 @@ use App\Services\WikiTextGenerator;
 use App\Services\WikiTextParser;
 use App\Services\MediawikiAPIService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
@@ -22,14 +23,15 @@ class WikiController extends Controller {
 
     public function search(Request $request): View {
 		$validator = Validator::make(
-            $request->all(), [ 'term' => 'required|alpha' ]
+            $request->all(), [ 'term' => 'required|string' ]
         );
 
 		// Store user input in cache
 		SessionService::set(['term'], $request);
 
 		if($validator->fails()){
-            $message = $this->MESSAGE_ERROR;
+            Log::error($validator->errors());
+			$message = $this->MESSAGE_ERROR;
             return view('messages/error', compact('message'));
         }
 
@@ -65,7 +67,7 @@ class WikiController extends Controller {
     public function preview (Request $request): View {
         $validationRules = [
 			'operation'                 => 'required',
-			'definitionLabel'           => 'required|alpha',
+			'definitionLabel'           => 'required|string',
 			'definitionTranslation'     => 'required|min:3',
 			'category'                  => 'required|alpha',
 			'language'                  => 'required|alpha',
@@ -77,7 +79,8 @@ class WikiController extends Controller {
 		$validator = Validator::make($request->all(), $validationRules);
         if($validator->fails()){
             $message = $this->MESSAGE_EMPTY_FIELDS;
-            return view('messages/error', compact('message'));
+			Log::error($validator->errors());
+			return view('messages/error', compact('message'));
         }
 
         $operation = $request->get('operation');
@@ -150,7 +153,8 @@ class WikiController extends Controller {
 
         $validator = Validator::make($request->all(), $validationRules);
         if($validator->fails()){
-            return view('messages/error', compact('message'));
+			Log::error($validator->errors());
+			return view('messages/error', compact('message'));
         }
 
         $newWikiText = $request->get("wikiText");
