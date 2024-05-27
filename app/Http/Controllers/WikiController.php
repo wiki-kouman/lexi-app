@@ -68,7 +68,7 @@ class WikiController extends Controller {
         $validationRules = [
 			'operation'                 => 'required',
 			'definitionLabel'           => 'required|string',
-			'definitionTranslation'     => 'required|min:3',
+			'definitionTranslation'     => 'required|string',
 			'category'                  => 'required|alpha',
 			'language'                  => 'required|alpha',
 			'exampleTranslation'        => 'nullable|array',
